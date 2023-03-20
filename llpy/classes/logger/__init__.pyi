@@ -1,7 +1,7 @@
 from typing import Any
 
-from llpy.classes.player import Player
-from llpy.utils.types import T_LogLevel
+from llpy import LLSE_Player
+from llpy.types import T_LogLevel
 
 class logger:
     """通用日志 API"""
@@ -25,7 +25,7 @@ class logger:
             log_level: 控制台的日志输出等级，默认为 `4`
         """
     @staticmethod
-    def setPlayer(player: Player | None, log_level: T_LogLevel = 4) -> None:
+    def setPlayer(player: LLSE_Player | None, log_level: T_LogLevel = 4) -> None:
         """
         设置日志是否输出到某个玩家
 

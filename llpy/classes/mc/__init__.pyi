@@ -1,10 +1,24 @@
-from llpy.utils.types import T_EventCallback, T_EventName
+from typing import Callable, Literal, overload
 
 class mc:
     """MC API"""
 
+    @overload
     @staticmethod
-    def listen(event: T_EventName, callback: T_EventCallback) -> bool:
+    def listen(
+        event: Literal["onServerStarted"],
+        callback: Callable[[], bool | None],
+    ) -> bool:
+        """服务器启动完毕监听"""
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onConsoleCmd"],
+        callback: Callable[[str], bool | None],
+    ) -> bool:
+        """服务端执行后台命令监听"""
+    @staticmethod
+    def listen(event: str, callback: Callable[..., bool | None]) -> bool:
         """
         注册监听器
 

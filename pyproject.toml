@@ -32,6 +32,7 @@ ignore = [
     "ARG001",
     "N801",
     "N802",
+    "N816",
     "F403",
 ]
 per-file-ignores = { "*.py" = ["F821"] }
