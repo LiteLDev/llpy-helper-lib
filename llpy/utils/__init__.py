@@ -1,12 +1,12 @@
 from typing import TYPE_CHECKING
 
-from . import mc
+from llpy.classes.mc import mc
 
 if TYPE_CHECKING:
-    from .mc import _T_Event, _T_EventCallback
+    from .types import T_EventCallback, T_EventName
 
 
-def listen(event: "_T_Event"):
+def listen(event: T_EventName):
     """
     监听事件函数装饰器
 
@@ -14,7 +14,7 @@ def listen(event: "_T_Event"):
         event: 要监听的事件名称
     """
 
-    def wrapper(func: _T_EventCallback):
+    def wrapper(func: T_EventCallback):
         mc.listen(event, func)
         return func
 

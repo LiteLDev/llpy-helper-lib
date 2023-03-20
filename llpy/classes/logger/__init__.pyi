@@ -1,29 +1,13 @@
-from typing import Any, Literal, Tuple
+from typing import Any
 
-from .player import Player
-
-_T_LogLevel = Literal[0, 1, 2, 3, 4, 5]
-"""
-日志输出等级
-
-0. `Slient` - 不输出任何日志
-
-1. `Fatal` - 仅输出 严重错误信息
-
-2. `Error` - 输出 严重错误、错误信息
-
-3. `Warn` - 输出 严重错误、错误、警告信息
-
-4. `Info` - 输出 严重错误、错误、警告、提示信息
-
-5. `Debug` - 输出 严重错误、错误、警告、提示 和 调试信息
-"""
+from llpy.classes.player import Player
+from llpy.utils.types import T_LogLevel
 
 class logger:
     """通用日志 API"""
 
     @staticmethod
-    def setConsole(is_open: bool, log_level: _T_LogLevel = 4) -> None:
+    def setConsole(is_open: bool, log_level: T_LogLevel = 4) -> None:
         """
         设置日志是否输出到控制台
 
@@ -32,7 +16,7 @@ class logger:
             log_level: 控制台的日志输出等级，默认为 `4`
         """
     @staticmethod
-    def setFile(file_path: str | None, log_level: _T_LogLevel = 4) -> None:
+    def setFile(file_path: str | None, log_level: T_LogLevel = 4) -> None:
         """
         设置日志是否输出到文件
 
@@ -41,7 +25,7 @@ class logger:
             log_level: 控制台的日志输出等级，默认为 `4`
         """
     @staticmethod
-    def setPlayer(player: Player | None, log_level: _T_LogLevel = 4) -> None:
+    def setPlayer(player: Player | None, log_level: T_LogLevel = 4) -> None:
         """
         设置日志是否输出到某个玩家
 
@@ -66,7 +50,7 @@ class logger:
             title: 设置的自定义标头
         """
     @staticmethod
-    def setLogLevel(level: _T_LogLevel) -> None:
+    def setLogLevel(level: T_LogLevel) -> None:
         """
         统一修改日志输出等级
 
@@ -74,7 +58,7 @@ class logger:
             level: 日志输出等级
         """
     @staticmethod
-    def log(*args: Tuple[Any]) -> None:
+    def log(*args: Any) -> None:
         """
         输出普通文本
 
@@ -84,7 +68,7 @@ class logger:
             args: 待输出的变量或者数据。可以是任意类型，参数数量可以是任意个
         """
     @staticmethod
-    def debug(*args: Tuple[Any]) -> None:
+    def debug(*args: Any) -> None:
         """
         输出调试信息
 
@@ -92,7 +76,7 @@ class logger:
             args: 待输出的变量或者数据。可以是任意类型，参数数量可以是任意个
         """
     @staticmethod
-    def info(*args: Tuple[Any]) -> None:
+    def info(*args: Any) -> None:
         """
         输出提示信息
 
@@ -100,7 +84,7 @@ class logger:
             args: 待输出的变量或者数据。可以是任意类型，参数数量可以是任意个
         """
     @staticmethod
-    def warn(*args: Tuple[Any]) -> None:
+    def warn(*args: Any) -> None:
         """
         输出警告信息
 
@@ -108,7 +92,7 @@ class logger:
             args: 待输出的变量或者数据。可以是任意类型，参数数量可以是任意个
         """
     @staticmethod
-    def error(*args: Tuple[Any]) -> None:
+    def error(*args: Any) -> None:
         """
         输出错误信息
 
@@ -116,7 +100,7 @@ class logger:
             args: 待输出的变量或者数据。可以是任意类型，参数数量可以是任意个
         """
     @staticmethod
-    def fatal(*args: Tuple[Any]) -> None:
+    def fatal(*args: Any) -> None:
         """
         输出严重错误信息
 

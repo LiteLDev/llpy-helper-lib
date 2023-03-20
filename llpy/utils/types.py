@@ -1,6 +1,6 @@
 from typing import Callable, Literal
 
-_T_Event = Literal[
+T_EventName = Literal[
     # Player Events
     "onPreJoin",
     "onJoin",
@@ -99,17 +99,24 @@ _T_Event = Literal[
     "onMobSpawned",
     "onContainerChangeSlot",
 ]
-_T_EventCallback = Callable[..., bool | None]
+"""可监听的事件类型"""
 
-def listen(event: _T_Event, callback: _T_EventCallback) -> bool:
-    """
-    注册监听器
+T_EventCallback = Callable[..., bool | None]
+"""可用的事件监听回调类型"""
 
-    Args:
-        event: 要监听的事件名
-        callback: 注册的监听函数
-            当指定的事件发生时，BDS会调用你给出的监听函数，并传入相应的参数
+T_LogLevel = Literal[0, 1, 2, 3, 4, 5]
+"""
+日志输出等级
 
-    Returns:
-        是否成功监听事件
-    """
+0. `Slient` - 不输出任何日志
+
+1. `Fatal` - 仅输出 严重错误信息
+
+2. `Error` - 输出 严重错误、错误信息
+
+3. `Warn` - 输出 严重错误、错误、警告信息
+
+4. `Info` - 输出 严重错误、错误、警告、提示信息
+
+5. `Debug` - 输出 严重错误、错误、警告、提示 和 调试信息
+"""
