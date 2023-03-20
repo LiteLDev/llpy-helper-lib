@@ -1,8 +1,9 @@
-from typing import Callable, Literal, overload
+from typing import Callable, Literal, NoReturn, overload
 
 class mc:
     """MC API"""
 
+    def __init__(self) -> NoReturn: ...
     @overload
     @staticmethod
     def listen(

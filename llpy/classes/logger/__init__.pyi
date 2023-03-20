@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, NoReturn
 
 from llpy import LLSE_Player
 from llpy.types import T_LogLevel
@@ -6,6 +6,7 @@ from llpy.types import T_LogLevel
 class logger:
     """通用日志 API"""
 
+    def __init__(self) -> NoReturn: ...
     @staticmethod
     def setConsole(is_open: bool, log_level: T_LogLevel = 4) -> None:
         """

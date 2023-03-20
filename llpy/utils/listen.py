@@ -1,6 +1,6 @@
 from typing import Callable
 
-from . import mc
+from llpy import mc
 
 
 def listen(event: str):
@@ -12,7 +12,7 @@ def listen(event: str):
     """
 
     def wrapper(func: Callable[..., bool | None]):
-        mc.listen(event, func)
+        mc.listen(event, func)  # pyright: ignore[reportGeneralTypeIssues]
         return func
 
     return wrapper
