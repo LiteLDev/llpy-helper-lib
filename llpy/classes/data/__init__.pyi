@@ -119,12 +119,20 @@ class data:
         """
     @overload
     @staticmethod
-    def fromBase64(base64: str, is_binary: bool = False) -> str: ...
+    def fromBase64(base64: str, is_binary: Literal[False] = False) -> str:
+        """
+        Base64 解码为数据
+
+        Args:
+            base64: 要解码的 Base64 字符串
+            is_binary: 返回数据类型是否为二进制数据，默认为 `False`
+
+        Returns:
+            解码后的文本
+        """
     @overload
     @staticmethod
-    def fromBase64(base64: str, is_binary: bool = True) -> bytearray: ...
-    @staticmethod
-    def fromBase64(base64: str, is_binary: bool = False) -> str | bytearray:
+    def fromBase64(base64: str, is_binary: Literal[True]) -> bytearray:
         """
         Base64 解码为数据
 
@@ -154,10 +162,3 @@ class data:
         conf_type: Literal["ini"],
         default: str,
     ) -> IniConfigFile | None: ...
-    @deprecated
-    @staticmethod
-    def openConfig(
-        path: str,
-        conf_type: Literal["json", "ini"],
-        default: str,
-    ) -> JsonConfigFile | IniConfigFile | None: ...

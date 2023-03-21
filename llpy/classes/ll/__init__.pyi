@@ -93,7 +93,7 @@ class ll:
         """
     @overload
     @staticmethod
-    def export(func: Callable[..., Any], namespace: str, name: str) -> bool:
+    def exports(func: Callable[..., Any], namespace: str, name: str) -> bool:
         """
         导出函数
 
@@ -109,7 +109,7 @@ class ll:
         """
     @overload
     @staticmethod
-    def export(func: Callable[..., Any], name: str) -> bool:
+    def exports(func: Callable[..., Any], name: str) -> bool:
         """
         导出函数
 
@@ -122,15 +122,9 @@ class ll:
         Returns:
             是否成功导出
         """
-    @staticmethod
-    def export(
-        func: Callable[..., Any],
-        arg1: str,
-        arg2: str | None = None,
-    ) -> bool: ...
     @overload
     @staticmethod
-    def import_(namespace: str, name: str) -> Callable[..., Any]:
+    def imports(namespace: str, name: str) -> Callable[..., Any]:
         """
         导入函数
 
@@ -150,7 +144,7 @@ class ll:
         """
     @overload
     @staticmethod
-    def import_(name: str) -> Callable[..., Any]:
+    def imports(name: str) -> Callable[..., Any]:
         """
         导入函数
 
@@ -167,11 +161,6 @@ class ll:
         Returns:
             导入的函数
         """
-    @staticmethod
-    def import_(
-        arg1: str,
-        arg2: str | None = None,
-    ) -> Callable[..., Any]: ...
     @overload
     @staticmethod
     def hasExported(namespace: str, name: str) -> bool:
@@ -197,8 +186,6 @@ class ll:
         Returns:
             函数是否已导出
         """
-    @staticmethod
-    def hasExported(arg1: str, arg2: str | None = None) -> bool: ...
     @staticmethod
     def require(path: str, remote_path: str | None = None) -> bool:
         """

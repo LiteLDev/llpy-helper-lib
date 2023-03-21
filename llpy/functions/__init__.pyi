@@ -55,10 +55,6 @@ def setTimeout(func: str, ms: int) -> int | None:
         此任务ID。如果返回 `None`，则代表创建任务失败
     """
 
-def setTimeout(func: Callable[[], Any] | str, ms: int) -> int | None: ...
-
-# 分隔
-
 @overload
 def setInterval(func: Callable[[], Any] | str, ms: int) -> int:
     """
@@ -84,10 +80,6 @@ def setInterval(func: str, ms: int) -> int | None:
     Returns:
         此任务ID。如果返回 `None`，则代表创建任务失败
     """
-
-def setInterval(func: Callable[[], Any] | str, ms: int) -> int | None: ...
-
-# 分隔
 
 def clearInterval(task_id: int) -> bool | None:
     """

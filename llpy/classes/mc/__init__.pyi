@@ -1,4 +1,4 @@
-from typing import Callable, Literal, NoReturn, overload
+from typing import Any, Callable, Literal, NoReturn, overload
 
 class mc:
     """MC API"""
@@ -8,25 +8,43 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onServerStarted"],
-        callback: Callable[[], bool | None],
+        callback: Callable[[], Any],
     ) -> bool:
-        """服务器启动完毕监听"""
-    @overload
-    @staticmethod
-    def listen(
-        event: Literal["onConsoleCmd"],
-        callback: Callable[[str], bool | None],
-    ) -> bool:
-        """服务端执行后台命令监听"""
-    @staticmethod
-    def listen(event: str, callback: Callable[..., bool | None]) -> bool:
         """
         注册监听器
+
+        服务器启动完毕 监听
+
+        拦截事件：不可以拦截
+
+        回调参数：无
 
         Args:
             event: 要监听的事件名
             callback: 注册的监听函数
-                当指定的事件发生时，BDS会调用你给出的监听函数，并传入相应的参数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onConsoleCmd"],
+        callback: Callable[[str], Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        服务端执行后台命令 监听
+
+        拦截事件：函数返回 `False`
+
+        回调参数：
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
 
         Returns:
             是否成功监听事件
