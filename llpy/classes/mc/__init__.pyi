@@ -17,8 +17,6 @@ class mc:
 
         拦截事件：不可以拦截
 
-        回调参数：无
-
         Args:
             event: 要监听的事件名
             callback: 注册的监听函数
@@ -39,7 +37,7 @@ class mc:
 
         拦截事件：函数返回 `False`
 
-        回调参数：
+        Callback Args:
             cmd (str): 执行的后台命令
 
         Args:

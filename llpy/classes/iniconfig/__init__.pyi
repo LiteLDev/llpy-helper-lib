@@ -1,4 +1,4 @@
-from typing import TypeVar
+from typing import TypeVar, overload
 
 from llpy.types import T_ToIniType
 
@@ -7,7 +7,20 @@ _T_DefaultVal = TypeVar("_T_DefaultVal", bound=T_ToIniType)
 class IniConfigFile:
     """Ini 格式配置文件"""
 
-    def __init__(self, path: str, default: str | None = None) -> None:
+    @overload
+    def __init__(self, path: str) -> None:
+        """
+        创建 / 打开一个 Ini 配置文件
+
+        如果创建 / 打开失败，将抛出异常。
+
+        我们建议你在 `BDS根目录/plugins/插件名字/` 目录下建立名为 `config.ini` 的配置文件，以保持各插件的配置统一
+
+        Args:
+            path: 配置文件所在路径，以 BDS 根目录为基准。如果配置文件路径中有目录尚不存在，脚本引擎会自动创建
+        """
+    @overload
+    def __init__(self, path: str, default: str) -> None:
         """
         创建 / 打开一个 Ini 配置文件
 
@@ -41,7 +54,7 @@ class IniConfigFile:
         Returns:
             指定配置项的数据
         """
-    def set(self, section: str, name: str, data: T_ToIniType) -> bool:  # noqa: A003
+    def set(self, section: str, name: str, data: T_ToIniType) -> bool:
         """
         写入配置项
 

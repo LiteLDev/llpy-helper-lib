@@ -50,7 +50,7 @@ class JsonConfigFile:
         Returns:
             指定配置项的数据
         """
-    def set(self, name: str, data: T_ToJsonType) -> bool:  # noqa: A003
+    def set(self, name: str, data: T_ToJsonType) -> bool:
         """
         写入配置项
 

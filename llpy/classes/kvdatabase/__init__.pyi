@@ -17,7 +17,7 @@ class KVDatabase:
         Args:
             db_dir: 数据库的储存目录路径，以 BDS 根目录为基准。当给出的目录不存在时，将尝试自动逐层创建对应的目录路径
         """
-    def set(self, name: str, data: T_ToJsonType) -> bool:  # noqa: A003
+    def set(self, name: str, data: T_ToJsonType) -> bool:
         """
         写入数据项
 

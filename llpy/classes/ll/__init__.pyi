@@ -1,6 +1,6 @@
-from typing import Any, Callable, Literal, NoReturn, overload
+from typing import Any, Callable, NoReturn, overload
 
-from llpy.types import T_PluginInfo
+from llpy.types import T_PluginInfo, T_VersionStatus
 
 class ll:
     """加载器相关接口"""
@@ -9,34 +9,24 @@ class ll:
 
     language: str
     """LiteLoaderBDS使用的语言。(例如 `zh_Hans`、`en` 和 `ru_RU`)"""
-
     major: int
     """主版本号（如 2.1.0 里的 2）"""
-
     minor: int
     """次版本号（如 2.1.0 里的 1）"""
-
     revision: int
     """修订版本号（如 2.1.0 里的 0）"""
-
-    status: Literal[0, 1, 2]
-    """版本状态 (`0` 为 Dev, `1` 为 Beta, `2` 为 Release)"""
-
+    status: T_VersionStatus
+    """版本状态"""
     scriptEngineVersion: str
     """LiteLoaderBDS Script Engine版本"""
-
     isWine: bool
     """是否处于 Wine 环境下"""
-
     isDebugMode: bool
     """是否处于 debug 模式"""
-
     isBeta: bool
     """当前版本是否为测试版"""
-
     isDev: bool
     """当前版本是否为开发版"""
-
     isRelease: bool
     """当前版本是否为发布版本"""
 
@@ -186,8 +176,23 @@ class ll:
         Returns:
             函数是否已导出
         """
+    @overload
     @staticmethod
-    def require(path: str, remote_path: str | None = None) -> bool:
+    def require(path: str) -> bool:
+        """
+        设置插件依赖库
+
+        有的时候，你需要确保某些插件在你自己的插件之前加载，以使用他们提供的前置服务，我们称这些前置插件为依赖库。
+
+        Args:
+            path: 依赖库文件名
+
+        Returns:
+            是否加载依赖库成功
+        """
+    @overload
+    @staticmethod
+    def require(path: str, remote_path: str) -> bool:
         """
         设置插件依赖库
 
@@ -201,7 +206,7 @@ class ll:
             是否加载依赖库成功
         """
     @staticmethod
-    def eval(code: str) -> Any:  # noqa: A003
+    def eval(code: str) -> Any:
         """
         将字符串作为脚本代码执行
 

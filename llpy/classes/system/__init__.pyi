@@ -43,6 +43,10 @@ class system:
 
         此函数异步工作，不会等待系统执行完命令后再返回，而是由引擎自动调用给出的回调函数来返回结果
 
+        Callback Args:
+            exitcode (int): shell 退出码
+            output (str): 标准输出和标准错误输出的内容
+
         Args:
             cmd: 执行的系统命令
             callback: shell 进程结束之后返回数据使用的回调函数
@@ -62,11 +66,15 @@ class system:
 
         此函数异步工作，不会等待系统执行完命令后再返回，而是由引擎自动调用给出的回调函数来返回结果
 
+        Callback Args:
+            exitcode (int): 程序进程退出码
+            output (str): 程序标准输出和标准错误输出的内容
+
         Args:
             process: 运行的程序路径（与命令行参数）
             callback: 程序进程结束之后返回数据使用的回调函数
             time_limit: 程序进程运行的最长时限，单位为毫秒。默认为 `-1`，即不限制运行时间
 
         Returns:
-            _description_
+            是否成功启动进程
         """

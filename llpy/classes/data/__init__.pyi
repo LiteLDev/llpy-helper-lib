@@ -143,19 +143,19 @@ class data:
         Returns:
             解码后的数据
         """
-    @deprecated
+    @deprecated("请使用 `KVDatabase()`")
     @staticmethod
     def openDB(db_dir: str) -> KVDatabase: ...
+    @deprecated("请使用 `JsonConfigFile()`")
     @overload
-    @deprecated
     @staticmethod
     def openConfig(
         path: str,
         conf_type: Literal["json"],
         default: str,
     ) -> JsonConfigFile | None: ...
+    @deprecated("请使用 `IniConfigFile()`")
     @overload
-    @deprecated
     @staticmethod
     def openConfig(
         path: str,
