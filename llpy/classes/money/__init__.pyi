@@ -92,7 +92,7 @@ class money:
             查询结果对象的数组
         """
     @staticmethod
-    def clearHistory(time:int) -> bool:
+    def clearHistory(time: int) -> bool:
         """
         删除账单历史记录
 
