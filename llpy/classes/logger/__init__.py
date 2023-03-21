@@ -1,3 +1,1 @@
-# pyright: reportUndefinedVariable=false
-
-logger = logger
+logger = __builtins__["logger"]

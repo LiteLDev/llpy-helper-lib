@@ -1,3 +1,1 @@
-# pyright: reportUndefinedVariable=false
-
-KVDatabase = KVDatabase
+KVDatabase = __builtins__["KVDatabase"]

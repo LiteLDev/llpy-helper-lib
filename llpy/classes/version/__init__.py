@@ -1,3 +1,1 @@
-# pyright: reportUndefinedVariable=false
-
-Version = Version
+Version = __builtins__["Version"]

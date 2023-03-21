@@ -1,4 +1,4 @@
-from typing import Any, Literal, TypedDict
+from typing import Literal, TypedDict
 
 T_ColorName = Literal[
     "blue",

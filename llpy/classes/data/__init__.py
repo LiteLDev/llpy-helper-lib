@@ -1,3 +1,1 @@
-# pyright: reportUndefinedVariable=false
-
-data = data
+data = __builtins__["data"]

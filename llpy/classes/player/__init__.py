@@ -1,4 +1,2 @@
-# pyright: reportUndefinedVariable=false
-
-LLSE_Player = LLSE_Player
+LLSE_Player = __builtins__["LLSE_Player"]
 Player = LLSE_Player

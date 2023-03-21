@@ -1,3 +1,1 @@
-# pyright: reportUndefinedVariable=false
-
-ll = ll
+ll = __builtins__["ll"]

@@ -1,3 +1,1 @@
-# pyright: reportUndefinedVariable=false
-
-IniConfigFile = IniConfigFile
+IniConfigFile = __builtins__["IniConfigFile"]

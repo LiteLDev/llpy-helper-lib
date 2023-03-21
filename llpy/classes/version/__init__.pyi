@@ -1,14 +1,13 @@
-from enum import Enum
-from typing import NoReturn
+from typing import Literal, NoReturn
 
-class Version(Enum):
+class Version:
     """插件版本状态枚举"""
 
     def __init__(self) -> NoReturn: ...
 
-    Dev: int
+    Dev: Literal[0]
     """正式发布版本（默认值）"""
-    Beta: int
+    Beta: Literal[1]
     """测试版本"""
-    Release: int
+    Release: Literal[2]
     """开发版本"""

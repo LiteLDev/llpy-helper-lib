@@ -1,6 +1,5 @@
 from typing import Any, Callable, Literal, NoReturn, overload
 
-from llpy import Version
 from llpy.types import T_PluginInfo
 
 class ll:
@@ -231,7 +230,7 @@ class ll:
     def registerPlugin(
         name: str,
         introduction: str,
-        version: list[int | Version],
+        version: list[int],
         other_information: dict[str, str],
     ):
         """

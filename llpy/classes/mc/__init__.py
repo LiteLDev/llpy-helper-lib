@@ -1,3 +1,1 @@
-# pyright: reportUndefinedVariable=false
-
-mc = mc
+mc = __builtins__["mc"]

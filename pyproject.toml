@@ -34,9 +34,8 @@ ignore = [
     "N802",
     "N815",
     "N816",
-    "F403",
 ]
-per-file-ignores = { "*.py" = ["F821"] }
+# per-file-ignores = { "*.py" = ["F821"] }
 select = [
     "F",
     "E",

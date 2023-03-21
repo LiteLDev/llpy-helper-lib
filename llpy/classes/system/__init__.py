@@ -1,3 +1,1 @@
-# pyright: reportUndefinedVariable=false
-
-system = system
+system = __builtins__["system"]

@@ -1,3 +1,1 @@
-# pyright: reportUndefinedVariable=false
-
-JsonConfigFile = JsonConfigFile
+JsonConfigFile = __builtins__["JsonConfigFile"]
