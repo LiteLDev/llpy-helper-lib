@@ -3,7 +3,8 @@ from typing import Any, NoReturn
 from typing_extensions import deprecated
 
 from llpy import NbtCompound
-from llpy.types import (
+
+from ..types import (
     T_NbtClass,
     T_NbtType,
     T_NbtTypeByte,

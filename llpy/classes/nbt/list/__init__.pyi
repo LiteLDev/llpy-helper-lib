@@ -1,7 +1,8 @@
 from typing import Self, overload
 
 from llpy import NbtCompound
-from llpy.types import T_NbtClass, T_NbtType, T_NbtTypeList, T_ToNbtBase, T_ToNbtList
+
+from ..types import T_NbtClass, T_NbtType, T_NbtTypeList, T_ToNbtBase, T_ToNbtList
 
 class NbtList:
     """NBT 列表对象"""

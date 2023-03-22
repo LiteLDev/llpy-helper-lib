@@ -3,7 +3,9 @@ from typing import Literal, NoReturn, overload
 from typing_extensions import deprecated
 
 from llpy import IniConfigFile, JsonConfigFile, KVDatabase
-from llpy.types import T_PlayerInfo, T_ToJsonType
+from llpy.types import T_ToJsonType
+
+from .types import T_PlayerInfo
 
 class data:
     """数据处理 API"""

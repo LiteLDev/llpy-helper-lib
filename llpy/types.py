@@ -1,191 +1,62 @@
-from typing import Literal, TypedDict
-
-from . import (
-    NbtByte,
-    NbtByteArray,
-    NbtCompound,
-    NbtDouble,
-    NbtEnd,
-    NbtFloat,
-    NbtInt,
-    NbtList,
-    NbtLong,
-    NbtShort,
-    NbtString,
+from .classes.config.types import T_ToIniType as T_ToIniType
+from .classes.config.types import T_ToJsonBase as T_ToJsonBase
+from .classes.config.types import T_ToJsonDict as T_ToJsonDict
+from .classes.config.types import T_ToJsonList as T_ToJsonList
+from .classes.config.types import T_ToJsonType as T_ToJsonType
+from .classes.data.types import T_PlayerInfo as T_PlayerInfo
+from .classes.ll.types import T_PluginInfo as T_PluginInfo
+from .classes.logger.types import T_LogLevel as T_LogLevel
+from .classes.money.types import T_MoneyHistory as T_MoneyHistory
+from .classes.nbt.types import T_NbtBaseClass as T_NbtBaseClass
+from .classes.nbt.types import T_NbtClass as T_NbtClass
+from .classes.nbt.types import T_NbtType as T_NbtType
+from .classes.nbt.types import T_NbtTypeByte as T_NbtTypeByte
+from .classes.nbt.types import T_NbtTypeByteArray as T_NbtTypeByteArray
+from .classes.nbt.types import T_NbtTypeCompound as T_NbtTypeCompound
+from .classes.nbt.types import T_NbtTypeDouble as T_NbtTypeDouble
+from .classes.nbt.types import T_NbtTypeEnd as T_NbtTypeEnd
+from .classes.nbt.types import T_NbtTypeFloat as T_NbtTypeFloat
+from .classes.nbt.types import T_NbtTypeInt as T_NbtTypeInt
+from .classes.nbt.types import T_NbtTypeList as T_NbtTypeList
+from .classes.nbt.types import T_NbtTypeLong as T_NbtTypeLong
+from .classes.nbt.types import T_NbtTypeShort as T_NbtTypeShort
+from .classes.nbt.types import T_NbtTypeString as T_NbtTypeString
+from .classes.nbt.types import T_ToNbtBase as T_ToNbtBase
+from .classes.nbt.types import T_ToNbtDict as T_ToNbtDict
+from .classes.nbt.types import T_ToNbtList as T_ToNbtList
+from .classes.nbt.types import T_ToNbtType as T_ToNbtType
+from .classes.network.types import T_HttpGetResp as T_HttpGetResp
+from .classes.particle.color.types import T_ParticleColor as T_ParticleColor
+from .classes.particle.color.types import (
+    T_ParticleColorApricot as T_ParticleColorApricot,
 )
-
-T_ColorName = Literal[
-    "blue",
-    "sky_blue",
-    "green",
-    "red",
-    "cyan",
-    "yellow",
-    "pink",
-    "dk_blue",
-    "dk_green",
-    "dk_red",
-    "bt_blue",
-    "dk_yellow",
-    "purple",
-    "white",
-    "grey",
-]
-"""`colorLog` 可传入的颜色名称"""
-
-
-T_LogLevel = Literal[0, 1, 2, 3, 4, 5]
-"""
-日志输出等级
-
-0. `Slient` - 不输出任何日志
-
-1. `Fatal` - 仅输出 严重错误信息
-
-2. `Error` - 输出 严重错误、错误信息
-
-3. `Warn` - 输出 严重错误、错误、警告信息
-
-4. `Info` - 输出 严重错误、错误、警告、提示信息
-
-5. `Debug` - 输出 严重错误、错误、警告、提示 和 调试信息
-"""
-
-
-T_VersionStatusDev = Literal[0]
-T_VersionStatusBeta = Literal[1]
-T_VersionStatusRelease = Literal[2]
-T_VersionStatus = T_VersionStatusDev | T_VersionStatusBeta | T_VersionStatusRelease
-
-
-T_WSClientStatusOpen = Literal[0]
-T_WSClientStatusClosing = Literal[1]
-T_WSClientStatusClosed = Literal[2]
-T_WSClientStatus = (
-    T_WSClientStatusOpen | T_WSClientStatusClosing | T_WSClientStatusClosed
+from .classes.particle.color.types import T_ParticleColorBlack as T_ParticleColorBlack
+from .classes.particle.color.types import T_ParticleColorCocoa as T_ParticleColorCocoa
+from .classes.particle.color.types import T_ParticleColorDark as T_ParticleColorDark
+from .classes.particle.color.types import T_ParticleColorFawn as T_ParticleColorFawn
+from .classes.particle.color.types import T_ParticleColorGreen as T_ParticleColorGreen
+from .classes.particle.color.types import T_ParticleColorIndigo as T_ParticleColorIndigo
+from .classes.particle.color.types import (
+    T_ParticleColorLavender as T_ParticleColorLavender,
 )
-
-
-T_NbtTypeEnd = Literal[0]
-T_NbtTypeByte = Literal[1]
-T_NbtTypeShort = Literal[2]
-T_NbtTypeInt = Literal[3]
-T_NbtTypeLong = Literal[4]
-T_NbtTypeFloat = Literal[5]
-T_NbtTypeDouble = Literal[6]
-T_NbtTypeByteArray = Literal[7]
-T_NbtTypeString = Literal[8]
-T_NbtTypeList = Literal[9]
-T_NbtTypeCompound = Literal[10]
-T_NbtType = (
-    T_NbtTypeEnd
-    | T_NbtTypeByte
-    | T_NbtTypeShort
-    | T_NbtTypeInt
-    | T_NbtTypeLong
-    | T_NbtTypeFloat
-    | T_NbtTypeDouble
-    | T_NbtTypeByteArray
-    | T_NbtTypeString
-    | T_NbtTypeList
-    | T_NbtTypeCompound
+from .classes.particle.color.types import (
+    T_ParticleColorOatmeal as T_ParticleColorOatmeal,
 )
-
-T_NbtBaseClass = (
-    NbtEnd
-    | NbtByte
-    | NbtShort
-    | NbtInt
-    | NbtLong
-    | NbtFloat
-    | NbtDouble
-    | NbtByteArray
-    | NbtString
+from .classes.particle.color.types import T_ParticleColorPink as T_ParticleColorPink
+from .classes.particle.color.types import T_ParticleColorRed as T_ParticleColorRed
+from .classes.particle.color.types import T_ParticleColorSlate as T_ParticleColorSlate
+from .classes.particle.color.types import T_ParticleColorTeal as T_ParticleColorTeal
+from .classes.particle.color.types import (
+    T_ParticleColorVatblue as T_ParticleColorVatblue,
 )
-T_NbtClass = T_NbtBaseClass | NbtCompound | NbtList
-
-T_ToNbtBase = int | float | str | bytearray | None
-T_ToNbtList = list["T_ToNbtType"]
-T_ToNbtDict = dict[str, "T_ToNbtType"]
-T_ToNbtType = T_ToNbtBase | T_ToNbtList | T_ToNbtDict
-
-
-T_ToIniType = int | float | str | bool
-
-T_ToJsonBase = int | float | str | bool | None
-T_ToJsonList = list["T_ToJsonType"]
-T_ToJsonDict = dict[str, "T_ToJsonType"]
-T_ToJsonType = T_ToJsonBase | T_ToJsonList | T_ToJsonDict
-
-
-class T_TimeObj(TypedDict):
-    """`system.getTimeObj()` 获取到的时间对象"""
-
-    Y: int
-    """年份数值（4位）"""
-    M: int
-    """月份数值"""
-    D: int
-    """天数数值"""
-    h: int
-    """小时数值（24小时制）"""
-    m: int
-    """分钟数值"""
-    s: int
-    """秒数值"""
-    ms: int
-    """毫秒数值"""
-
-
-class T_PlayerInfo(TypedDict):
-    """
-    `data.getAllPlayerInfo()` 获取到的玩家信息
-
-    提示：XUID 数据库中储存的玩家名为玩家对象对应的 `realName` 字段
-    """
-
-    name: str
-    """玩家名"""
-    xuid: str
-    """玩家XUID"""
-    uuid: str
-    """玩家UUID"""
-
-
-class T_PluginInfo(TypedDict):
-    """`ll.getPluginInfo()` 或 `ll.getAllPluginInfo()` 返回的插件信息"""
-
-    name: str
-    """插件名称"""
-    desc: str
-    """插件描述"""
-    version: list[int]
-    """插件版本（数组形式）"""
-    versionStr: str
-    """插件版本"""
-    filePath: str
-    """插件路径"""
-    others: dict[str, str]
-    """其他信息"""
-
-
-T_MoneyHistory = TypedDict(
-    "T_MoneyHistory",
-    {
-        "from": str,  # 此项交易的发起者玩家 XUID
-        "to": str,  # 此项交易的接收者玩家 XUID
-        "money": int,  # 此项交易的金额
-        "time": str,  # 此项交易发生时的时间字符串，格式为：YYYY-mm-dd hh:mm:ss
-        "note": str,  # 此交易的附加说明信息
-    },
-)
-"""`money.getHistory()` 返回的历史账单信息"""
-
-
-class T_HttpGetResp(TypedDict):
-    """`network.httpGetSync()` 返回的响应结果"""
-
-    status: int
-    """返回的 HTTP(s) 响应码，如200代表请求成功。如果请求执行失败，`status` 值将为 `-1`"""
-    data: str
-    """返回的具体数据"""
+from .classes.particle.color.types import T_ParticleColorWhite as T_ParticleColorWhite
+from .classes.particle.color.types import T_ParticleColorYellow as T_ParticleColorYellow
+from .classes.system.types import T_TimeObj as T_TimeObj
+from .classes.version.types import T_VersionStatus as T_VersionStatus
+from .classes.version.types import T_VersionStatusBeta as T_VersionStatusBeta
+from .classes.version.types import T_VersionStatusDev as T_VersionStatusDev
+from .classes.version.types import T_VersionStatusRelease as T_VersionStatusRelease
+from .classes.wsclient.types import T_WSClientStatus as T_WSClientStatus
+from .classes.wsclient.types import T_WSClientStatusClosed as T_WSClientStatusClosed
+from .classes.wsclient.types import T_WSClientStatusClosing as T_WSClientStatusClosing
+from .classes.wsclient.types import T_WSClientStatusOpen as T_WSClientStatusOpen

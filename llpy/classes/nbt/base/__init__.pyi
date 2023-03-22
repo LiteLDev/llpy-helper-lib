@@ -1,6 +1,6 @@
 from typing import Generic, TypeVar, overload
 
-from llpy.types import (
+from ..types import (
     T_NbtType,
     T_NbtTypeByte,
     T_NbtTypeByteArray,

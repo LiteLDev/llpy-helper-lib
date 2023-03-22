@@ -1,6 +1,6 @@
 from typing import TypeVar
 
-from llpy.types import T_ToJsonType
+from ..types import T_ToJsonType
 
 _T_DefaultVal = TypeVar("_T_DefaultVal", bound=T_ToJsonType)
 

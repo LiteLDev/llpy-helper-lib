@@ -1,7 +1,8 @@
 from typing import Any, NoReturn
 
 from llpy import LLSE_Player
-from llpy.types import T_LogLevel
+
+from .types import T_LogLevel
 
 class logger:
     """通用日志 API"""

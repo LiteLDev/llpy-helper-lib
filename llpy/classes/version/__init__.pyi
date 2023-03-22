@@ -1,6 +1,6 @@
 from typing import NoReturn
 
-from llpy.types import T_VersionStatusBeta, T_VersionStatusDev, T_VersionStatusRelease
+from .types import T_VersionStatusBeta, T_VersionStatusDev, T_VersionStatusRelease
 
 class Version:
     """插件版本状态枚举"""

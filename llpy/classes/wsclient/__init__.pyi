@@ -1,6 +1,6 @@
 from typing import Any, Callable, Literal, overload
 
-from llpy.types import (
+from .types import (
     T_WSClientStatus,
     T_WSClientStatusClosed,
     T_WSClientStatusClosing,

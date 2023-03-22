@@ -1,6 +1,6 @@
 from typing import TypeVar, overload
 
-from llpy.types import T_ToIniType
+from ..types import T_ToIniType
 
 _T_DefaultVal = TypeVar("_T_DefaultVal", bound=T_ToIniType)
 

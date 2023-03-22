@@ -1,6 +1,6 @@
 from typing import Any, Callable, overload
 
-from llpy.types import T_ColorName
+from .types import T_LogColorName
 
 def log(*args: Any) -> None:
     """
@@ -10,7 +10,7 @@ def log(*args: Any) -> None:
         args: 待输出的变量或者数据。可以是任意类型，参数数量可以是任意个
     """
 
-def colorLog(color: T_ColorName, *args: Any) -> None:
+def colorLog(color: T_LogColorName, *args: Any) -> None:
     """
     输出带颜色文本
 

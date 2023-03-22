@@ -1,6 +1,6 @@
 from typing import NoReturn, overload
 
-from llpy.types import T_MoneyHistory
+from .types import T_MoneyHistory
 
 class money:
     """经济系统 API"""
