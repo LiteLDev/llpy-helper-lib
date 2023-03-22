@@ -1,4 +1,4 @@
-from llpy.types import (
+from ..types import (
     T_ParticleColorApricot,
     T_ParticleColorBlack,
     T_ParticleColorCocoa,
@@ -18,7 +18,7 @@ from llpy.types import (
 )
 
 class ParticleColor:
-    """粒子生成器 颜色枚举"""
+    """粒子生成器颜色枚举"""
 
     Black: T_ParticleColorBlack
     """粒子颜色枚举 | 黑色"""

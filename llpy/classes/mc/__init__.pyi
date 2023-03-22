@@ -1,5 +1,7 @@
 from typing import Any, Callable, Literal, NoReturn, overload
 
+from llpy import ParticleSpawner
+
 class mc:
     """MC API"""
 
@@ -47,3 +49,22 @@ class mc:
         Returns:
             是否成功监听事件
         """
+    @staticmethod
+    def newParticleSpawner(
+        display_radius: int,
+        high_detail: bool,
+        double_side: bool,
+    ) -> ParticleSpawner:
+        """
+        生成一个粒子生成器对象
+
+        Args:
+            display_radius: 粒子显示半径
+            high_detail: 需要高细节线条
+            double_side: 需要双面粒子
+
+        Returns:
+            一个粒子生成器对象
+        """
+
+# TODO

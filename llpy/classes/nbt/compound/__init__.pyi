@@ -1,4 +1,4 @@
-from typing import Self, overload
+from typing import overload
 
 from llpy import NbtList
 
@@ -47,7 +47,7 @@ class NbtCompound:
         Returns:
             对应的值的数据类型。如果要读取的 NBT 不存在，将返回 `None`
         """
-    def setEnd(self, key: str) -> Self:
+    def setEnd(self, key: str) -> "NbtCompound":
         """
         设置键对应的值的具体数据
 
@@ -57,18 +57,7 @@ class NbtCompound:
         Returns:
             写入完毕的NBT对象 （便于连锁进行其他操作）
         """
-    def setByte(self, key: str, data: int) -> Self:
-        """
-        设置键对应的值的具体数据
-
-        Args:
-            key: 要操作的键名。不存在会自动创建
-            data: 要写入的具体数据。数据类型必须和键对应的值储存的数据类型一致
-
-        Returns:
-            写入完毕的NBT对象 （便于连锁进行其他操作）
-        """
-    def setInt(self, key: str, data: int) -> Self:
+    def setByte(self, key: str, data: int) -> "NbtCompound":
         """
         设置键对应的值的具体数据
 
@@ -79,7 +68,7 @@ class NbtCompound:
         Returns:
             写入完毕的NBT对象 （便于连锁进行其他操作）
         """
-    def setShort(self, key: str, data: int) -> Self:
+    def setInt(self, key: str, data: int) -> "NbtCompound":
         """
         设置键对应的值的具体数据
 
@@ -90,7 +79,7 @@ class NbtCompound:
         Returns:
             写入完毕的NBT对象 （便于连锁进行其他操作）
         """
-    def setLong(self, key: str, data: int) -> Self:
+    def setShort(self, key: str, data: int) -> "NbtCompound":
         """
         设置键对应的值的具体数据
 
@@ -101,7 +90,7 @@ class NbtCompound:
         Returns:
             写入完毕的NBT对象 （便于连锁进行其他操作）
         """
-    def setFloat(self, key: str, data: float) -> Self:
+    def setLong(self, key: str, data: int) -> "NbtCompound":
         """
         设置键对应的值的具体数据
 
@@ -112,7 +101,7 @@ class NbtCompound:
         Returns:
             写入完毕的NBT对象 （便于连锁进行其他操作）
         """
-    def setDouble(self, key: str, data: float) -> Self:
+    def setFloat(self, key: str, data: float) -> "NbtCompound":
         """
         设置键对应的值的具体数据
 
@@ -123,7 +112,7 @@ class NbtCompound:
         Returns:
             写入完毕的NBT对象 （便于连锁进行其他操作）
         """
-    def setString(self, key: str, data: str) -> Self:
+    def setDouble(self, key: str, data: float) -> "NbtCompound":
         """
         设置键对应的值的具体数据
 
@@ -134,7 +123,18 @@ class NbtCompound:
         Returns:
             写入完毕的NBT对象 （便于连锁进行其他操作）
         """
-    def setByteArray(self, key: str, data: bytearray) -> Self:
+    def setString(self, key: str, data: str) -> "NbtCompound":
+        """
+        设置键对应的值的具体数据
+
+        Args:
+            key: 要操作的键名。不存在会自动创建
+            data: 要写入的具体数据。数据类型必须和键对应的值储存的数据类型一致
+
+        Returns:
+            写入完毕的NBT对象 （便于连锁进行其他操作）
+        """
+    def setByteArray(self, key: str, data: bytearray) -> "NbtCompound":
         """
         设置键对应的值的具体数据
 
@@ -156,7 +156,7 @@ class NbtCompound:
         Returns:
             是否成功写入
         """
-    def removeTag(self, key: str) -> Self:
+    def removeTag(self, key: str) -> "NbtCompound":
         """
         删除键对应的 NBT 对象
 

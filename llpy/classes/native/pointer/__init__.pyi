@@ -1,10 +1,8 @@
 from typing import NoReturn
 
-class LLSE_Player:
-    """玩家对象"""
+class NativePointer:
+    """原生指针 API"""
 
     def __init__(self) -> NoReturn: ...
-
-Player = LLSE_Player
 
 # TODO

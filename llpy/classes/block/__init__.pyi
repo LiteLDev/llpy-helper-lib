@@ -1,10 +1,10 @@
 from typing import NoReturn
 
-class LLSE_Player:
-    """玩家对象"""
+class LLSE_Block:
+    """方块对象"""
 
     def __init__(self) -> NoReturn: ...
 
-Player = LLSE_Player
+Block = LLSE_Block
 
 # TODO

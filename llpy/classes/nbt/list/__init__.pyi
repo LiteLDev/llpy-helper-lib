@@ -1,4 +1,4 @@
-from typing import Self, overload
+from typing import overload
 
 from llpy import NbtCompound
 
@@ -41,7 +41,7 @@ class NbtList:
         Returns:
             此下标处储存的 NBT 的数据类型。如果要读取的 NBT 不存在，将返回 `None`
         """
-    def setEnd(self, index: int) -> Self:
+    def setEnd(self, index: int) -> "NbtList":
         """
         设置某个下标位置的具体数据
 
@@ -51,18 +51,7 @@ class NbtList:
         Returns:
             写入完毕的 NBT 列表（便于连锁进行其他操作）
         """
-    def setByte(self, index: int, data: int) -> Self:
-        """
-        设置某个下标位置的具体数据
-
-        Args:
-            index: 要操作的目标下标
-            data: 要写入的具体数据。写入的数据类型必须和下标位置储存的数据类型一致，且下标不能超出有效下标的最大值
-
-        Returns:
-            写入完毕的 NBT 列表（便于连锁进行其他操作）
-        """
-    def setInt(self, index: int, data: int) -> Self:
+    def setByte(self, index: int, data: int) -> "NbtList":
         """
         设置某个下标位置的具体数据
 
@@ -73,7 +62,7 @@ class NbtList:
         Returns:
             写入完毕的 NBT 列表（便于连锁进行其他操作）
         """
-    def setShort(self, index: int, data: int) -> Self:
+    def setInt(self, index: int, data: int) -> "NbtList":
         """
         设置某个下标位置的具体数据
 
@@ -84,7 +73,7 @@ class NbtList:
         Returns:
             写入完毕的 NBT 列表（便于连锁进行其他操作）
         """
-    def setLong(self, index: int, data: int) -> Self:
+    def setShort(self, index: int, data: int) -> "NbtList":
         """
         设置某个下标位置的具体数据
 
@@ -95,7 +84,7 @@ class NbtList:
         Returns:
             写入完毕的 NBT 列表（便于连锁进行其他操作）
         """
-    def setFloat(self, index: int, data: float) -> Self:
+    def setLong(self, index: int, data: int) -> "NbtList":
         """
         设置某个下标位置的具体数据
 
@@ -106,7 +95,18 @@ class NbtList:
         Returns:
             写入完毕的 NBT 列表（便于连锁进行其他操作）
         """
-    def setDouble(self, index: int, data: float) -> Self:
+    def setFloat(self, index: int, data: float) -> "NbtList":
+        """
+        设置某个下标位置的具体数据
+
+        Args:
+            index: 要操作的目标下标
+            data: 要写入的具体数据。写入的数据类型必须和下标位置储存的数据类型一致，且下标不能超出有效下标的最大值
+
+        Returns:
+            写入完毕的 NBT 列表（便于连锁进行其他操作）
+        """
+    def setDouble(self, index: int, data: float) -> "NbtList":
         """
         设置某个下标位置的具体数据
 
@@ -117,7 +117,7 @@ class NbtList:
         Returns:
             写入完毕的 NB 列表（便于连锁进行其他操作）
         """
-    def setString(self, index: int, data: str) -> Self:
+    def setString(self, index: int, data: str) -> "NbtList":
         """
         设置某个下标位置的具体数据
 
@@ -128,7 +128,7 @@ class NbtList:
         Returns:
             写入完毕的 NBT 列表（便于连锁进行其他操作）
         """
-    def setByteArray(self, index: int, data: bytearray) -> Self:
+    def setByteArray(self, index: int, data: bytearray) -> "NbtList":
         """
         设置某个下标位置的具体数据
 
@@ -139,7 +139,7 @@ class NbtList:
         Returns:
             写入完毕的 NBT 列表（便于连锁进行其他操作）
         """
-    def setTag(self, index: int, tag: T_NbtClass) -> Self:
+    def setTag(self, index: int, tag: T_NbtClass) -> "NbtList":
         """
         设置某个下标位置的 NBT 对象
 
@@ -150,7 +150,7 @@ class NbtList:
         Returns:
             写入完毕的 NBT 列表（便于连锁进行其他操作）
         """
-    def addTag(self, tag: T_NbtClass) -> Self:
+    def addTag(self, tag: T_NbtClass) -> "NbtList":
         """
         往列表末尾追加一个 NBT 对象
 
@@ -160,7 +160,7 @@ class NbtList:
         Returns:
             追加完毕的 NBT 列表（便于连锁进行其他操作）
         """
-    def removeTag(self, index: int) -> Self:
+    def removeTag(self, index: int) -> "NbtList":
         """
         删除某个下标位置的 NBT 对象
 
