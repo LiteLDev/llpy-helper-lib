@@ -1,3 +1,4 @@
+from .classes.base.types import T_BasicFacing as T_BasicFacing
 from .classes.base.types import T_DimID as T_DimID
 from .classes.base.types import T_DimIDNether as T_DimIDNether
 from .classes.base.types import T_DimIDOverWorld as T_DimIDOverWorld
@@ -97,6 +98,9 @@ from .classes.particle.types import T_PosDirection_NEG_Z as T_PosDirection_NEG_Z
 from .classes.particle.types import T_PosDirection_POS_X as T_PosDirection_POS_X
 from .classes.particle.types import T_PosDirection_POS_Y as T_PosDirection_POS_Y
 from .classes.particle.types import T_PosDirection_POS_Z as T_PosDirection_POS_Z
+from .classes.player.types import T_GameMode as T_GameMode
+from .classes.player.types import T_PlayerInventory as T_PlayerInventory
+from .classes.player.types import T_PermLevel as T_PermLevel
 from .classes.system.types import T_TimeObj as T_TimeObj
 from .classes.wsclient.types import T_WSClientStatus as T_WSClientStatus
 from .classes.wsclient.types import T_WSClientStatusClosed as T_WSClientStatusClosed

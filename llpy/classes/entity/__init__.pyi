@@ -30,13 +30,13 @@ class LLSE_Entity:
         """实体的游戏内id"""
     @property
     def pos(self) -> FloatPos:
-        """实体所在坐标"""
+        """实体视角高度坐标"""
     @property
     def posDelta(self) -> FloatPos:
         """实体位置增量"""
     @property
     def feetPos(self) -> FloatPos:
-        """实体腿部所在坐标"""
+        """实体腿部所在坐标（游戏内显示的方块坐标）"""
     @property
     def blockPos(self) -> IntPos:
         """实体所在的方块坐标"""
@@ -99,7 +99,7 @@ class LLSE_Entity:
         """实体是否在传送门内"""
     @property
     def isTrusting(self) -> bool:
-        """实体是否信任"""
+        """实体是否受信任"""
     @property
     def isTouchingDamageBlock(self) -> bool:
         """实体是否接触到伤害方块"""
@@ -111,7 +111,7 @@ class LLSE_Entity:
         """实体是否在地面"""
     @property
     def isOnHotBlock(self) -> bool:
-        """实体是否在热块上"""
+        """实体是否在高温方块上（岩浆等）"""
     @property
     def isTrading(self) -> bool:
         """实体是否在交易"""
@@ -144,7 +144,7 @@ class LLSE_Entity:
         """
         传送实体至指定位置
 
-        保持朝向
+        保持传送前朝向
 
         Args:
             pos: 目标位置坐标
@@ -175,7 +175,7 @@ class LLSE_Entity:
         """
         传送实体至指定位置
 
-        保持朝向
+        保持传送前朝向
 
         Args:
             x: 目标位置 X 坐标
@@ -611,7 +611,7 @@ class LLSE_Entity:
     def asPointer(self) -> NativePointer: ...
     @deprecated("请使用 `LLSE_Entity.setNbt()`")
     def setTag(self, nbt: NbtCompound) -> bool: ...
-    @deprecated("已弃用")
+    @deprecated("请使用 `LLSE_Entity.setFire()`")
     def setOnFire(self, time: int) -> bool: ...
     @deprecated("请使用 `LLSE_Entity.getNbt()`")
     def getTag(self) -> NbtCompound: ...

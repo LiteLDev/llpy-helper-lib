@@ -1,4 +1,4 @@
-from typing import Literal
+from ..types import T_BasicFacing
 
 class DirectionAngle:
     """方向角对象"""
@@ -21,13 +21,13 @@ class DirectionAngle:
         """偏航角（旋转角）"""
     @yaw.setter
     def yaw(self, val: float): ...
-    def toFacing(self) -> Literal[0, 1, 2, 3]:
+    def toFacing(self) -> T_BasicFacing:
         """
         将偏航角转换为基本朝向
 
         用于快速确定实体面向的大致方向
 
         Returns:
-            `0-3`，代表 北东南西 四个基本朝向
+            大致方向
         """
     def toString(self) -> str: ...
