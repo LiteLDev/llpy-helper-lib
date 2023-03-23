@@ -98,9 +98,16 @@ from .classes.particle.types import T_PosDirection_NEG_Z as T_PosDirection_NEG_Z
 from .classes.particle.types import T_PosDirection_POS_X as T_PosDirection_POS_X
 from .classes.particle.types import T_PosDirection_POS_Y as T_PosDirection_POS_Y
 from .classes.particle.types import T_PosDirection_POS_Z as T_PosDirection_POS_Z
+from .classes.player.types import T_BossEventColor as T_BossEventColor
+from .classes.player.types import T_CustomFormCallback as T_CustomFormCallback
 from .classes.player.types import T_GameMode as T_GameMode
-from .classes.player.types import T_PlayerInventory as T_PlayerInventory
+from .classes.player.types import T_ModalFormCallback as T_ModalFormCallback
+from .classes.player.types import T_NavigatePath as T_NavigatePath
 from .classes.player.types import T_PermLevel as T_PermLevel
+from .classes.player.types import T_PlayerInventory as T_PlayerInventory
+from .classes.player.types import T_SimpleFormCallback as T_SimpleFormCallback
+from .classes.player.types import T_TextPacketType as T_TextPacketType
+from .classes.player.types import T_TitlePacketType as T_TitlePacketType
 from .classes.system.types import T_TimeObj as T_TimeObj
 from .classes.wsclient.types import T_WSClientStatus as T_WSClientStatus
 from .classes.wsclient.types import T_WSClientStatusClosed as T_WSClientStatusClosed

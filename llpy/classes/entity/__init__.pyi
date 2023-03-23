@@ -133,12 +133,6 @@ class LLSE_Entity:
     @property
     def isMoving(self) -> bool:
         """实体是否移动"""
-    @property
-    def getBiomeName(self) -> str:
-        """群系名称"""
-    @property
-    def getBiomeId(self) -> int:
-        """群系 ID"""
     @overload
     def teleport(self, pos: T_PosType) -> bool:
         """
@@ -448,11 +442,11 @@ class LLSE_Entity:
         Returns:
             此实体盔甲栏对应的容器对象
         """
-    def distanceTo(self, pos: LLSE_Entity | LLSE_Player | T_PosType) -> T_Number | None:
+    def distanceTo(self, pos: LLSE_Entity | LLSE_Player | T_PosType) -> T_Number:
         """
         获取实体到坐标的距离
 
-        若玩家的坐标与目标的坐标不在同一维度，将返回整数最大值
+        若实体的坐标与目标的坐标不在同一维度，将返回整数最大值
 
         Args:
             pos: 目标位置
@@ -463,11 +457,11 @@ class LLSE_Entity:
     def distanceToSqr(
         self,
         pos: LLSE_Entity | LLSE_Player | T_PosType,
-    ) -> T_Number | None:
+    ) -> T_Number:
         """
         获取实体到坐标的距离
 
-        若玩家的坐标与目标的坐标不在同一维度，将返回整数最大值。
+        若实体的坐标与目标的坐标不在同一维度，将返回整数最大值。
 
         Args:
             pos: 目标位置
@@ -595,6 +589,20 @@ class LLSE_Entity:
 
         Returns:
             视线方向方块。如果获取失败，返回 `None`
+        """
+    def getBiomeId(self) -> int:
+        """
+        获取实体所在群系 ID
+
+        Returns:
+            群系 ID
+        """
+    def getBiomeName(self) -> str:
+        """
+        获取实体所在群系名称
+
+        Returns:
+            群系名称
         """
     def quickEvalMolangScript(self, exp: str) -> float:
         """

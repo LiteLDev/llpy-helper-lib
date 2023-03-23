@@ -12,6 +12,10 @@ from .classes.data import data as data
 from .classes.entity import Entity as Entity
 from .classes.entity import LLSE_Entity as LLSE_Entity
 from .classes.entity.damagecause import ActorDamageCause as ActorDamageCause
+from .classes.form.custom import CustomForm as CustomForm
+from .classes.form.custom import LLSE_CustomForm as LLSE_CustomForm
+from .classes.form.simple import LLSE_SimpleForm as LLSE_SimpleForm
+from .classes.form.simple import SimpleForm as SimpleForm
 from .classes.item import Item as Item
 from .classes.item import LLSE_Item as LLSE_Item
 from .classes.kvdatabase import KVDatabase as KVDatabase
@@ -34,11 +38,16 @@ from .classes.nbt.compound import NbtCompound as NbtCompound
 from .classes.nbt.list import NbtList as NbtList
 from .classes.nbt.static import NBT as NBT
 from .classes.network import network as network
+from .classes.packet import BinaryStream as BinaryStream
+from .classes.packet import LLSE_Packet as LLSE_Packet
+from .classes.packet import Packet as Packet
 from .classes.particle.color import ParticleColor as ParticleColor
 from .classes.particle.direction import Direction as Direction
 from .classes.particle.spawner import ParticleSpawner as ParticleSpawner
 from .classes.player import LLSE_Player as LLSE_Player
 from .classes.player import Player as Player
+from .classes.player.device import Device as Device
+from .classes.player.device import LLSE_Device as LLSE_Device
 from .classes.system import system as system
 from .classes.wsclient import WSClient as WSClient
 from .functions import clearInterval as clearInterval
