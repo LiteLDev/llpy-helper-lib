@@ -21,6 +21,8 @@ from ..types import (
 )
 
 class NBT:
+    """NBT API"""
+
     End: T_NbtTypeEnd
     """NBT 类型枚举 | 用于标记标签的结尾"""
     Byte: T_NbtTypeByte

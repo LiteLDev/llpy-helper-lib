@@ -1,3 +1,5 @@
+from typing import NoReturn
+
 from ..types import (
     T_ParticleColorApricot,
     T_ParticleColorBlack,
@@ -19,6 +21,8 @@ from ..types import (
 
 class ParticleColor:
     """粒子生成器颜色枚举"""
+
+    def __init__(self) -> NoReturn: ...
 
     Black: T_ParticleColorBlack
     """粒子颜色枚举 | 黑色"""

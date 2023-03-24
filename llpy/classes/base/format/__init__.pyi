@@ -1,7 +1,9 @@
-from typing import Literal
+from typing import Literal, NoReturn
 
 class Format:
     """格式化代码枚举"""
+
+    def __init__(self) -> NoReturn: ...
 
     Black: Literal["§0"]
     """格式化代码枚举 | 黑色"""

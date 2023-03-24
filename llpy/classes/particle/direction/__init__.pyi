@@ -1,3 +1,5 @@
+from typing import NoReturn
+
 from ..types import (
     T_PosDirection_NEG_X,
     T_PosDirection_NEG_Y,
@@ -9,6 +11,8 @@ from ..types import (
 
 class Direction:
     """粒子生成器方向枚举"""
+
+    def __init__(self) -> NoReturn: ...
 
     NEG_Y: T_PosDirection_NEG_Y
     """粒子方向枚举 | -Y"""

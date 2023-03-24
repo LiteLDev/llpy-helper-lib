@@ -1,3 +1,7 @@
+from typing import NoReturn
+
+from llpy.classes.base.enumdefine import _T_EnumDefineClass
+
 from ..types import (
     T_DamageCauseAnvil,
     T_DamageCauseBlockExplosion,
@@ -33,6 +37,8 @@ from ..types import (
 
 class ActorDamageCause:
     """实体伤害类型枚举"""
+
+    def __init__(self) -> NoReturn: ...
 
     Override: T_DamageCauseOverride
     """伤害类型枚举 | 非正常伤害"""
@@ -94,3 +100,5 @@ class ActorDamageCause:
     """伤害类型枚举 | 钟乳石砸中伤害"""
     Stalagmite: T_DamageCauseStalagmite
     """伤害类型枚举 | 钟乳石扎脚伤害"""
+
+class DamageCause(_T_EnumDefineClass, ActorDamageCause): ...
