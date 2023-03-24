@@ -115,6 +115,7 @@ from .classes.entity.types import T_DamageCauseTemperature as T_DamageCauseTempe
 from .classes.entity.types import T_DamageCauseThorns as T_DamageCauseThorns
 from .classes.entity.types import T_DamageCauseVoid as T_DamageCauseVoid
 from .classes.entity.types import T_DamageCauseWither as T_DamageCauseWither
+from .classes.i18n.types import T_I18NJson as T_I18NJson
 from .classes.ll.types import T_PluginInfo as T_PluginInfo
 from .classes.ll.types import T_VersionStatus as T_VersionStatus
 from .classes.ll.types import T_VersionStatusBeta as T_VersionStatusBeta
