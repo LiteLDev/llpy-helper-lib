@@ -5,6 +5,75 @@ from .classes.base.types import T_DimIDOverWorld as T_DimIDOverWorld
 from .classes.base.types import T_DimIDTheEnd as T_DimIDTheEnd
 from .classes.base.types import T_Number as T_Number
 from .classes.base.types import T_PosType as T_PosType
+from .classes.command.types import T_CommandCallback as T_CommandCallback
+from .classes.command.types import T_CommandCallbackResult as T_CommandCallbackResult
+from .classes.command.types import T_OriginType as T_OriginType
+from .classes.command.types import T_OriginTypeActor as T_OriginTypeActor
+from .classes.command.types import T_OriginTypeActorServer as T_OriginTypeActorServer
+from .classes.command.types import (
+    T_OriginTypeAutomationPlayer as T_OriginTypeAutomationPlayer,
+)
+from .classes.command.types import T_OriginTypeBlock as T_OriginTypeBlock
+from .classes.command.types import (
+    T_OriginTypeClientAutomation as T_OriginTypeClientAutomation,
+)
+from .classes.command.types import T_OriginTypeDevConsole as T_OriginTypeDevConsole
+from .classes.command.types import (
+    T_OriginTypeExecuteContext as T_OriginTypeExecuteContext,
+)
+from .classes.command.types import T_OriginTypeGameArgument as T_OriginTypeGameArgument
+from .classes.command.types import (
+    T_OriginTypeGameDirectorEntity as T_OriginTypeGameDirectorEntity,
+)
+from .classes.command.types import (
+    T_OriginTypeMinecartBlock as T_OriginTypeMinecartBlock,
+)
+from .classes.command.types import T_OriginTypePlayer as T_OriginTypePlayer
+from .classes.command.types import T_OriginTypePrecompiled as T_OriginTypePrecompiled
+from .classes.command.types import T_OriginTypeScript as T_OriginTypeScript
+from .classes.command.types import T_OriginTypeServer as T_OriginTypeServer
+from .classes.command.types import T_OriginTypeTest as T_OriginTypeTest
+from .classes.command.types import T_OriginTypeVirtual as T_OriginTypeVirtual
+from .classes.command.types import T_ParamOption as T_ParamOption
+from .classes.command.types import (
+    T_ParamOptionEnumAsChainedCommand as T_ParamOptionEnumAsChainedCommand,
+)
+from .classes.command.types import (
+    T_ParamOptionEnumAutocompleteExpansion as T_ParamOptionEnumAutocompleteExpansion,
+)
+from .classes.command.types import (
+    T_ParamOptionHasSemanticConstraint as T_ParamOptionHasSemanticConstraint,
+)
+from .classes.command.types import T_ParamOptionNone as T_ParamOptionNone
+from .classes.command.types import T_ParamType as T_ParamType
+from .classes.command.types import T_ParamTypeActor as T_ParamTypeActor
+from .classes.command.types import T_ParamTypeActorType as T_ParamTypeActorType
+from .classes.command.types import T_ParamTypeBlock as T_ParamTypeBlock
+from .classes.command.types import T_ParamTypeBlockPos as T_ParamTypeBlockPos
+from .classes.command.types import T_ParamTypeBool as T_ParamTypeBool
+from .classes.command.types import T_ParamTypeCommand as T_ParamTypeCommand
+from .classes.command.types import T_ParamTypeEffect as T_ParamTypeEffect
+from .classes.command.types import T_ParamTypeEnum as T_ParamTypeEnum
+from .classes.command.types import T_ParamTypeFloat as T_ParamTypeFloat
+from .classes.command.types import T_ParamTypeInt as T_ParamTypeInt
+from .classes.command.types import T_ParamTypeItem as T_ParamTypeItem
+from .classes.command.types import T_ParamTypeJsonValue as T_ParamTypeJsonValue
+from .classes.command.types import T_ParamTypeMessage as T_ParamTypeMessage
+from .classes.command.types import T_ParamTypePlayer as T_ParamTypePlayer
+from .classes.command.types import T_ParamTypeRawText as T_ParamTypeRawText
+from .classes.command.types import T_ParamTypeSoftEnum as T_ParamTypeSoftEnum
+from .classes.command.types import T_ParamTypeString as T_ParamTypeString
+from .classes.command.types import T_ParamTypeVec3 as T_ParamTypeVec3
+from .classes.command.types import (
+    T_ParamTypeWildcardSelector as T_ParamTypeWildcardSelector,
+)
+from .classes.command.types import T_PermType as T_PermType
+from .classes.command.types import T_PermTypeAdmin as T_PermTypeAdmin
+from .classes.command.types import T_PermTypeAny as T_PermTypeAny
+from .classes.command.types import T_PermTypeConsole as T_PermTypeConsole
+from .classes.command.types import T_PermTypeGameMasters as T_PermTypeGameMasters
+from .classes.command.types import T_PermTypeHostPlayer as T_PermTypeHostPlayer
+from .classes.command.types import T_PermTypeInternal as T_PermTypeInternal
 from .classes.config.types import T_ToIniType as T_ToIniType
 from .classes.config.types import T_ToJsonBase as T_ToJsonBase
 from .classes.config.types import T_ToJsonDict as T_ToJsonDict
@@ -47,10 +116,10 @@ from .classes.entity.types import T_DamageCauseThorns as T_DamageCauseThorns
 from .classes.entity.types import T_DamageCauseVoid as T_DamageCauseVoid
 from .classes.entity.types import T_DamageCauseWither as T_DamageCauseWither
 from .classes.ll.types import T_PluginInfo as T_PluginInfo
-from .classes.ll.version.types import T_VersionStatus as T_VersionStatus
-from .classes.ll.version.types import T_VersionStatusBeta as T_VersionStatusBeta
-from .classes.ll.version.types import T_VersionStatusDev as T_VersionStatusDev
-from .classes.ll.version.types import T_VersionStatusRelease as T_VersionStatusRelease
+from .classes.ll.types import T_VersionStatus as T_VersionStatus
+from .classes.ll.types import T_VersionStatusBeta as T_VersionStatusBeta
+from .classes.ll.types import T_VersionStatusDev as T_VersionStatusDev
+from .classes.ll.types import T_VersionStatusRelease as T_VersionStatusRelease
 from .classes.logger.types import T_LogLevel as T_LogLevel
 from .classes.money.types import T_MoneyHistory as T_MoneyHistory
 from .classes.nbt.types import T_NbtBaseClass as T_NbtBaseClass

@@ -653,14 +653,15 @@ class LLSE_Player:
         Returns:
             是否成功给予
         """
-    def clearItem(self, item_type: str) -> int:
+    def clearItem(self, item_type: str, count: int = 1) -> int:
         """
-        清除玩家背包中所有指定类型的物品
+        清除玩家背包中指定类型的物品
 
         将玩家物品栏、主手、副手、盔甲栏中所有物品的 `type` 属性与此字符串进行比较，如果相等，则清除此物品
 
         Args:
             item_type: 要清除的物品对象类型名
+            count: 要清除的数量
 
         Returns:
             清除的物品个数

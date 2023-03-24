@@ -1,8 +1,6 @@
 from typing import Any, Callable, NoReturn, overload
 
-from llpy.types import T_VersionStatus
-
-from .types import T_PluginInfo
+from .types import T_PluginInfo, T_VersionStatus
 
 class ll:
     """加载器相关接口"""
