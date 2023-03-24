@@ -26,6 +26,7 @@ from .classes.form.custom import CustomForm as CustomForm
 from .classes.form.custom import LLSE_CustomForm as LLSE_CustomForm
 from .classes.form.simple import LLSE_SimpleForm as LLSE_SimpleForm
 from .classes.form.simple import SimpleForm as SimpleForm
+from .classes.i18n import i18n as i18n
 from .classes.item import Item as Item
 from .classes.item import LLSE_Item as LLSE_Item
 from .classes.kvdatabase import KVDatabase as KVDatabase
@@ -54,6 +55,8 @@ from .classes.packet import Packet as Packet
 from .classes.particle.color import ParticleColor as ParticleColor
 from .classes.particle.direction import Direction as Direction
 from .classes.particle.spawner import ParticleSpawner as ParticleSpawner
+from .classes.permission import Permission as Permission
+from .classes.permission.role import Role as Role
 from .classes.player import LLSE_Player as LLSE_Player
 from .classes.player import Player as Player
 from .classes.player.device import Device as Device

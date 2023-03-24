@@ -167,6 +167,7 @@ from .classes.particle.types import T_PosDirection_NEG_Z as T_PosDirection_NEG_Z
 from .classes.particle.types import T_PosDirection_POS_X as T_PosDirection_POS_X
 from .classes.particle.types import T_PosDirection_POS_Y as T_PosDirection_POS_Y
 from .classes.particle.types import T_PosDirection_POS_Z as T_PosDirection_POS_Z
+from .classes.permission.types import T_PermInfo as T_PermInfo
 from .classes.player.types import T_BossEventColor as T_BossEventColor
 from .classes.player.types import T_CustomFormCallback as T_CustomFormCallback
 from .classes.player.types import T_GameMode as T_GameMode
