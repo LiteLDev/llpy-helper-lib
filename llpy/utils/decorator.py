@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Any, Callable
 
 from llpy import LLSE_Command, mc
 from llpy.types import T_CommandCallback
@@ -12,7 +12,7 @@ def listener(event: str):
         event: 要监听的事件名称
     """
 
-    def wrapper(func: Callable[..., bool | None]):
+    def wrapper(func: Callable[..., Any]):
         mc.listen(event, func)  # pyright: ignore[reportGeneralTypeIssues]
         return func
 
