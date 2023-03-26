@@ -84,6 +84,17 @@ class Permission:
             身份组实例
         """
     @staticmethod
+    def deleteRole(name: str) -> None:
+        """
+        删除身份组
+
+        Args:
+            name: 身份组名称
+
+        Raises:
+            无效的参数 / 身份组不存在
+        """
+    @staticmethod
     def registerPermission(name: str, desc: str) -> None:
         """
         注册权限

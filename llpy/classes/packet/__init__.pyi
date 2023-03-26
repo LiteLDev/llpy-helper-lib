@@ -1,6 +1,7 @@
 from typing import NoReturn
 
 from llpy import FloatPos, NativePointer
+from llpy.classes.nbt.compound import NbtCompound
 
 class LLSE_Packet:
     """数据包对象"""
@@ -207,6 +208,16 @@ class BinaryStream:
     def writeVec3(self, value: FloatPos) -> bool:
         """
         向二进制流写入 三维向量（坐标）
+
+        Args:
+            value: 写入的数据
+
+        Returns:
+            是否成功
+        """
+    def writeCompoundTag(self, value: NbtCompound) -> bool:
+        """
+        向二进制流写入 NBT 标签
 
         Args:
             value: 写入的数据
