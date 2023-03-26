@@ -121,11 +121,6 @@ T_CommandCallbackResult = (
     | LLSE_Block
 )
 T_CommandCallback = Callable[
-    [
-        LLSE_Command,
-        LLSE_CommandOrigin,
-        LLSE_CommandOutput,
-        dict[str, T_CommandCallbackResult],
-    ],
+    [LLSE_Command, LLSE_CommandOrigin, LLSE_CommandOutput, dict[str, Any]],
     Any,
 ]

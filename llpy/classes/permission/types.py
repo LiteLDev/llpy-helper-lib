@@ -1,6 +1,6 @@
 from typing import TypedDict
 
-from llpy.types import T_ToJsonType
+from llpy.types import T_ToJsonDict
 
 
 class T_PermInfo(TypedDict):
@@ -10,5 +10,5 @@ class T_PermInfo(TypedDict):
     """权限名称"""
     enabled: bool
     """是否启用"""
-    extra: dict[str, T_ToJsonType] | None
+    extra: T_ToJsonDict | None
     """额外数据"""

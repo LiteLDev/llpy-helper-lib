@@ -1,6 +1,6 @@
 from typing import overload
 
-from llpy.types import T_ToJsonType
+from llpy.types import T_ToJsonDict
 
 from ..types import T_PermInfo
 
@@ -56,7 +56,7 @@ class Role:
     def permissions(self) -> list[T_PermInfo]:
         """身份组拥有的权限"""
     @permissions.setter
-    def permissions(self, val: list[dict[str, T_ToJsonType]]):
+    def permissions(self, val: list[T_ToJsonDict]):
         """
         设置身份组拥有的权限
 
@@ -130,7 +130,7 @@ class Role:
         self,
         name: str,
         enabled: bool,
-        extra_data: dict[str, T_ToJsonType],
+        extra_data: T_ToJsonDict,
     ) -> None:
         """
         设置身份组权限

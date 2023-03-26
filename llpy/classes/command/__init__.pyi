@@ -206,7 +206,7 @@ class LLSE_Command:
             cmd (LLSE_Command): 自身的指令对象
             origin (LLSE_CommandOrigin): 命令的执行者
             output (LLSE_CommandOutput): 命令执行结果输出对象
-            result (dict[str, T_CommandCallbackResult]): 命令各项参数获取的结果
+            result (T_CommandCallback): 命令各项参数获取的结果
 
         Args:
             callback: 注册的这个命令被执行时，接口自动调用的回调函数

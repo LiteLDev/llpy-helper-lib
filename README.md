@@ -43,7 +43,7 @@ mc.listen("onServerStarted", lambda: colorLog("green", "The Server Started!"))
 # or you can use the decorator from `llpy.utils`
 @listener("onConsoleCmd")
 def _(cmd: str):
-    logger.info(f'You typed "{cmd}"!')
+    logger.info(f'You typed "{cmd}"')
 
 
 # register a command
@@ -61,7 +61,7 @@ def _(
     res: dict[str, T_CommandCallbackResult],
 ):
     arg = cast(str | None, res.get("input"))
-    tip = f'§aYou inputed "§r§6§l{arg}§r"' if arg else "§cNothing inputted!"
+    tip = f'§aYou inputed §r"§6§l{arg}§r"' if arg else "§cNothing inputted!"
 
     player = ori.player
     if player:
