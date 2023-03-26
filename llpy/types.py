@@ -122,6 +122,25 @@ from .classes.ll.types import T_VersionStatusBeta as T_VersionStatusBeta
 from .classes.ll.types import T_VersionStatusDev as T_VersionStatusDev
 from .classes.ll.types import T_VersionStatusRelease as T_VersionStatusRelease
 from .classes.logger.types import T_LogLevel as T_LogLevel
+from .classes.mc.types import T_BroadcastType as T_BroadcastType
+from .classes.mc.types import (
+    T_BroadcastType_ANNOUNCEMENT as T_BroadcastType_ANNOUNCEMENT,
+)
+from .classes.mc.types import T_BroadcastType_CHAT as T_BroadcastType_CHAT
+from .classes.mc.types import T_BroadcastType_JSON as T_BroadcastType_JSON
+from .classes.mc.types import (
+    T_BroadcastType_JSON_WHISPER as T_BroadcastType_JSON_WHISPER,
+)
+from .classes.mc.types import (
+    T_BroadcastType_JUKEBOX_POPUP as T_BroadcastType_JUKEBOX_POPUP,
+)
+from .classes.mc.types import T_BroadcastType_POPUP as T_BroadcastType_POPUP
+from .classes.mc.types import T_BroadcastType_RAW as T_BroadcastType_RAW
+from .classes.mc.types import T_BroadcastType_SYSTEM as T_BroadcastType_SYSTEM
+from .classes.mc.types import T_BroadcastType_TIP as T_BroadcastType_TIP
+from .classes.mc.types import T_BroadcastType_TRANSLATION as T_BroadcastType_TRANSLATION
+from .classes.mc.types import T_BroadcastType_WHISPER as T_BroadcastType_WHISPER
+from .classes.mc.types import T_RunCmdExRet as T_RunCmdExRet
 from .classes.money.types import T_MoneyHistory as T_MoneyHistory
 from .classes.nbt.types import T_NbtBaseClass as T_NbtBaseClass
 from .classes.nbt.types import T_NbtClass as T_NbtClass
