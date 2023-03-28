@@ -1,20 +1,33 @@
 from typing import Any, Callable, Literal, NoReturn, overload
 
+from typing_extensions import deprecated
+
 from llpy import (
+    FloatPos,
     IntPos,
     LLSE_Block,
     LLSE_Command,
     LLSE_CustomForm,
     LLSE_Entity,
     LLSE_Item,
+    LLSE_Objective,
     LLSE_Player,
     LLSE_SimpleForm,
     NbtCompound,
     ParticleSpawner,
 )
-from llpy.types import T_Number, T_PermType, T_PosType
+from llpy.types import T_DimID, T_Number, T_PermType, T_PosType, T_ScoreDisplaySlot
 
-from .types import T_BroadcastType, T_RunCmdExRet
+from .types import (
+    T_BroadcastType,
+    T_ConsoleCmdCallback,
+    T_PlayerCmdCallback,
+    T_RunCmdExRet,
+    T_StructRotationType,
+    T_StructureMirrorType,
+    T_TimeID,
+    T_WeatherID,
+)
 
 class mc:
     """MC API"""
@@ -262,7 +275,7 @@ class mc:
         x: T_Number,
         y: T_Number,
         z: T_Number,
-        dim_id: int,
+        dim_id: T_DimID,
     ) -> LLSE_Entity | None:
         """
         生成新生物并获取
@@ -301,7 +314,7 @@ class mc:
         x: T_Number,
         y: T_Number,
         z: T_Number,
-        dim_id: int,
+        dim_id: T_DimID,
     ) -> LLSE_Entity | None:
         """
         复制生物并获取
@@ -340,7 +353,7 @@ class mc:
         x: T_Number,
         y: T_Number,
         z: T_Number,
-        dim_id: int,
+        dim_id: T_DimID,
     ) -> LLSE_Entity | None:
         """
         根据物品对象生成掉落物实体
@@ -377,7 +390,7 @@ class mc:
         x: T_Number,
         y: T_Number,
         z: T_Number,
-        dim_id: int,
+        dim_id: T_DimID,
     ) -> LLSE_Player | None:
         """
         创建一个模拟玩家
@@ -422,7 +435,7 @@ class mc:
         x: T_Number,
         y: T_Number,
         z: T_Number,
-        dim_id: int,
+        dim_id: T_DimID,
         source: LLSE_Entity | None,
         power: float,
         explode_range: float,
@@ -460,7 +473,7 @@ class mc:
         """
     @overload
     @staticmethod
-    def getBlock(x: int, y: int, z: int, dim_id: int) -> LLSE_Block | None:
+    def getBlock(x: int, y: int, z: int, dim_id: T_DimID) -> LLSE_Block | None:
         """
         通过方块坐标获取方块对象
 
@@ -497,7 +510,7 @@ class mc:
         x: int,
         y: int,
         z: int,
-        dim_id: int,
+        dim_id: T_DimID,
         pos: IntPos,
         block: LLSE_Block | str | NbtCompound,
         tiledata: int = 0,
@@ -518,7 +531,7 @@ class mc:
         """
     @overload
     @staticmethod
-    def spawnParticle(pos: T_PosType, dim_id: int, particle_type: str) -> bool:
+    def spawnParticle(pos: T_PosType, dim_id: T_DimID, particle_type: str) -> bool:
         """
         在指定位置生成粒子效果
 
@@ -536,7 +549,7 @@ class mc:
         x: T_Number,
         y: T_Number,
         z: T_Number,
-        dim_id: int,
+        dim_id: T_DimID,
         particle_type: str,
     ) -> bool:
         """
@@ -569,29 +582,172 @@ class mc:
             新创建的自定义表单构建器对象
         """
     @staticmethod
-    def setMotd(): ...
+    def setMotd(motd: str) -> bool:
+        """
+        设置服务器MOTD字符串
+
+        Args:
+            motd: 目标 MOTD 字符串
+
+        Returns:
+            是否设置成功
+        """
     @staticmethod
-    def sendCmdOutput(): ...
+    def setMaxPlayers(num: int) -> bool:
+        """
+        设置服务器最大玩家数
+
+        Args:
+            num: 最大玩家数
+
+        Returns:
+            是否设置成功
+        """
     @staticmethod
-    def newIntPos(): ...
+    def sendCmdOutput(output: str) -> bool:
+        """
+        模拟产生一个控制台命令输出
+
+        Args:
+            output: 模拟产生的命令输出
+
+        Returns:
+            是否成功执行
+        """
     @staticmethod
-    def newFloatPos(): ...
+    def newIntPos(x: int, y: int, z: int, dim_id: T_DimID) -> IntPos:
+        """
+        生成一个整数坐标对象
+
+        Args:
+            x: X 坐标
+            y: Y 坐标
+            z: Z 坐标
+            dim_id: 维度 ID
+
+        Returns:
+            一个整数坐标对象
+        """
     @staticmethod
-    def getDisplayObjective(): ...
+    def newFloatPos(x: float, y: float, z: float, dim_id: T_DimID) -> FloatPos:
+        """
+        生成一个浮点数坐标对象
+
+        Args:
+            x: X 坐标
+            y: Y 坐标
+            z: Z 坐标
+            dim_id: 维度 ID
+
+        Returns:
+            一个浮点数坐标对象
+        """
     @staticmethod
-    def clearDisplayObjective(): ...
+    def getDisplayObjective(slot: T_ScoreDisplaySlot) -> LLSE_Objective | None:
+        """
+        获取某个处于显示状态的计分项
+
+        Args:
+            slot: 待查询的显示槽位名称
+
+        Returns:
+            正在 `slot` 槽位显示的计分项。如果返回 `None`，则代表对应槽位未显示计分项
+        """
     @staticmethod
-    def getScoreObjective(): ...
+    def clearDisplayObjective(slot: T_ScoreDisplaySlot) -> bool:
+        """
+        使计分项停止显示
+
+        Args:
+            slot: 显示槽位名称字符串
+
+        Returns:
+            是否清除成功
+        """
     @staticmethod
-    def newScoreObjective(): ...
+    def getScoreObjective(name: str) -> LLSE_Objective | None:
+        """
+        获取某个已存在的计分项
+
+        Args:
+            name: 要获取的计分项名称
+
+        Returns:
+            对应的计分项对象。如果返回 `None`，则代表计分项不存在
+        """
     @staticmethod
-    def removeScoreObjective(): ...
+    def newScoreObjective(name: str, display_name: str) -> LLSE_Objective | None:
+        """
+        创建一个新的计分项
+
+        Args:
+            name: 计分项名称
+            display_name: 计分项显示名称
+
+        Returns:
+            新增创建的计分项对象。如果返回 `None`，则代表创建失败
+        """
     @staticmethod
-    def getAllScoreObjectives(): ...
+    def removeScoreObjective(name: str) -> bool:
+        """
+        移除一个已存在的计分项
+
+        此接口的作用类似命令 `/scoreboard objectives remove <name>`
+
+        Args:
+            name: 计分项名称
+
+        Returns:
+            是否移除成功
+        """
     @staticmethod
-    def setStructure(): ...
+    def getAllScoreObjectives() -> list[LLSE_Objective]:
+        """
+        获取所有计分项
+
+        此接口的作用类似命令 `/scoreboard objectives list`
+
+        Returns:
+            计分板系统记录的所有计分项对象
+        """
     @staticmethod
-    def getStructure(): ...
+    def setStructure(
+        nbt: NbtCompound,
+        pos: IntPos,
+        mirror: T_StructureMirrorType,
+        rotation: T_StructRotationType,
+    ) -> bool:
+        """
+        放置结构 NBT
+
+        Args:
+            nbt: NBT
+            pos: 放置坐标
+            mirror: 镜像模式
+            rotation: 旋转角度
+
+        Returns:
+            是否成功
+        """
+    @staticmethod
+    def getStructure(
+        pos1: IntPos,
+        pos2: IntPos,
+        ignore_blocks: bool = False,
+        ignore_entities: bool = False,
+    ) -> NbtCompound:
+        """
+        获取结构 NBT
+
+        Args:
+            pos1: 对角坐标 1（与 `fill` 命令的 `from` 参数类似）
+            pos2: 对角坐标 2（与 `fill` 命令的 `to` 参数类似）
+            ignore_blocks: 忽略方块
+            ignore_entities: 忽略实体
+
+        Returns:
+            NBT
+        """
     @staticmethod
     def newParticleSpawner(
         display_radius: int,
@@ -610,43 +766,222 @@ class mc:
             一个粒子生成器对象
         """
     @staticmethod
-    def getPlayerNbt(): ...
-    @staticmethod
-    def setPlayerNbt(): ...
-    @staticmethod
-    def setPlayerNbtTags(): ...
-    @staticmethod
-    def deletePlayerNbt(): ...
-    @staticmethod
-    def getPlayerScore(): ...
-    @staticmethod
-    def setPlayerScore(): ...
-    @staticmethod
-    def addPlayerScore(): ...
-    @staticmethod
-    def reducePlayerScore(): ...
-    @staticmethod
-    def deletePlayerScore(): ...
-    @staticmethod
-    def getTime(): ...
-    @staticmethod
-    def setTime(): ...
-    @staticmethod
-    def getWeather(): ...
-    @staticmethod
-    def setWeather(): ...
-    # For Compatibly
-    @staticmethod
-    def regPlayerCmd(): ...
-    @staticmethod
-    def regConsoleCmd(): ...
-    @staticmethod
-    def getAllScoreObjective(): ...
-    @staticmethod
-    def getDisplayObjectives(): ...
-    @staticmethod
-    def crash(): ...
-    @staticmethod
-    def setMaxPlayers(): ...
+    def getPlayerNbt(uuid: str) -> NbtCompound:
+        """
+        获取玩家对应的 NBT 对象
 
-# TODO
+        此 API 的好处是可以获取到离线玩家 NBT，无需玩家在线，无需玩家对象。
+
+        Args:
+            uuid: 玩家的 UUID
+
+        Returns:
+            玩家的 NBT 对象
+        """
+    @staticmethod
+    def setPlayerNbt(uuid: str, nbt: NbtCompound) -> bool:
+        """
+        写入玩家对应的 NBT 对象
+
+        此 API 的好处是可以操作离线玩家 NBT，无需玩家在线，无需玩家对象。
+
+        Args:
+            uuid: 玩家的 UUID
+            nbt: NBT 对象
+
+        Returns:
+            是否成功写入
+        """
+    @staticmethod
+    def setPlayerNbtTags(uuid: str, nbt: NbtCompound, tags: list[str]) -> bool:
+        """
+        覆盖玩家对应的 NBT 对象的特定 NbtTag
+
+        此 API 的好处是可以操作离线玩家 NBT，无需玩家在线，无需玩家对象。
+
+        Args:
+            uuid: 玩家的 UUID
+            nbt: NBT 对象
+            tags: 需要覆盖的 NbtTag 列表
+
+        Returns:
+            是否成功覆盖对应的 Tag
+        """
+    @staticmethod
+    def deletePlayerNbt(uuid: str) -> bool:
+        """
+        从存档中删除玩家对应的 NBT 对象的全部内容
+
+        此 API 的好处是可以操作离线玩家 NBT，无需玩家在线，无需玩家对象。
+
+        Args:
+            uuid: 玩家的 UUID
+
+        Returns:
+            是否删除成功
+        """
+    @staticmethod
+    def getPlayerScore(uuid: str, name: str) -> int:
+        """
+        获取玩家计分项的分数
+
+        可查询离线玩家计分板
+
+        Args:
+            uuid: 玩家的 UUID
+            name: 计分项名称
+
+        Returns:
+            计分板上的数值
+        """
+    @staticmethod
+    def setPlayerScore(uuid: str, name: str, value: int) -> bool:
+        """
+        设置玩家计分项的分数
+
+        可修改离线玩家计分板
+
+        Args:
+            uuid: 玩家的 UUID
+            name: 计分项名称
+            value: 要设置的数值
+
+        Returns:
+            是否设置成功
+        """
+    @staticmethod
+    def addPlayerScore(uuid: str, name: str, value: int) -> bool:
+        """
+        增加玩家计分项的分数
+
+        可修改离线玩家计分板
+
+        Args:
+            uuid: 玩家的 UUID
+            name: 计分项名称
+            value: 要增加的数值
+
+        Returns:
+            是否设置成功
+        """
+    @staticmethod
+    def reducePlayerScore(uuid: str, name: str, value: int) -> bool:
+        """
+        减少玩家计分项的分数
+
+        可修改离线玩家计分板
+
+        Args:
+            uuid: 玩家的 UUID
+            name: 计分项名称
+            value: 要减少的数值
+
+        Returns:
+            是否设置成功
+        """
+    @staticmethod
+    def deletePlayerScore(uuid: str, name: str) -> bool:
+        """
+        移除玩家计分项的分数
+
+        可修改离线玩家计分板
+
+        Args:
+            uuid: 玩家的 UUID
+            name: 计分项名称
+
+        Returns:
+            是否设置成功
+        """
+    @staticmethod
+    def getTime(time_id: T_TimeID) -> int:
+        """
+        获取服务器游戏时间
+
+        Args:
+            time_id: 想要查询的时间
+
+        Returns:
+            获取到的时间
+        """
+    @staticmethod
+    def setTime(tick: int) -> bool:
+        """
+        设置服务器游戏时间
+
+        Args:
+            tick: 想要设置的时间
+
+        Returns:
+            是否设置成功
+        """
+    @staticmethod
+    def getWeather() -> T_WeatherID:
+        """
+        获取服务器天气
+
+        Returns:
+            当前天气
+        """
+    @staticmethod
+    def setWeather(weather_id: T_WeatherID) -> bool:
+        """
+        设置服务器天气
+
+        Args:
+            weather_id: 想要设置的天气
+
+        Returns:
+            是否设置成功
+        """
+    @deprecated("请使用 `mc.newCommand()`")
+    @staticmethod
+    def regPlayerCmd(
+        cmd: str,
+        description: str,
+        callback: T_PlayerCmdCallback,
+        level: Literal[0, 1, 2, 3] = 0,
+    ) -> bool:
+        """
+        注册一个新的玩家假命令
+
+        Callback Args:
+            player (LLSE_Player): 执行命令的玩家对象
+            args (list[str]): 目标命令后面的参数，按空格为分界分割
+
+        Args:
+            cmd: 待注册的命令
+            description: 命令描述文本
+            callback: 注册的这个命令被执行时，接口自动调用的回调函数
+            level: 命令的注册等级，类似于 `PermType`
+
+        Returns:
+            是否成功注册
+        """
+    @deprecated("请使用 `mc.newCommand()`")
+    @staticmethod
+    def regConsoleCmd(cmd: str, description: str, callback: T_ConsoleCmdCallback):
+        """
+        注册一个新的控制台假命令
+
+        Callback Args:
+            args (list[str]): 目标命令后面的参数，按空格为分界分割
+
+        Args:
+            cmd: 待注册的命令
+            description: 命令描述文本
+            callback: 注册的这个命令被执行时，接口自动调用的回调函数
+
+        Returns:
+            是否成功注册
+        """
+    @deprecated("请使用 `mc.getAllScoreObjectives()`")
+    @staticmethod
+    def getAllScoreObjective() -> list[LLSE_Objective]: ...
+    @deprecated("请使用 `mc.getDisplayObjective()`")
+    @staticmethod
+    def getDisplayObjectives(slot: T_ScoreDisplaySlot) -> LLSE_Objective | None: ...
+    @deprecated("已弃用，仅 DEBUG 模式下有效")
+    @staticmethod
+    def crash() -> bool:
+        """让 BDS 崩溃"""

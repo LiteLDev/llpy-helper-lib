@@ -1,4 +1,6 @@
-from typing import Literal, TypedDict
+from typing import Any, Callable, Literal, TypedDict
+
+from llpy import LLSE_Player
 
 
 class T_RunCmdExRet(TypedDict):
@@ -39,3 +41,43 @@ T_BroadcastType = (
     | T_BroadcastType_JSON
 )
 """`mc.broadcast()` 的文本消息类型参数"""
+
+T_StructureMirrorType = Literal[0, 1, 2, 3]
+"""
+`mc.setStructure()` 的镜像模式参数
+
+- 0. 不镜像
+- 1. X 轴
+- 2. Y 轴
+- 3. Z 轴
+"""
+T_StructRotationType = Literal[0, 1, 2, 3]
+"""
+`mc.setStructure()` 的旋转角度参数
+
+- 0. 不旋转
+- 1. 旋转 90°
+- 2. 旋转 180°
+- 3. 旋转 270°
+"""
+
+T_TimeID = Literal[0, 1, 2]
+"""
+`mc.getTime()` 的服务器游戏时间类型参数
+
+- 0. 自当天日出后流逝的游戏刻数 (`daytime`)
+- 1. 世界总共流逝的游戏刻数 (`gametime`)
+- 2. 已流逝的游戏天数 (`day`)
+"""
+
+T_WeatherID = Literal[0, 1, 2]
+"""
+服务器天气类型
+
+- 0. 晴天
+- 1. 雨天
+- 2. 雷暴
+"""
+
+T_PlayerCmdCallback = Callable[[LLSE_Player, list[str]], Any]
+T_ConsoleCmdCallback = Callable[[list[str]], Any]

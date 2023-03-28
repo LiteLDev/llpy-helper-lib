@@ -122,5 +122,5 @@ T_CommandCallbackResult = (
 )
 T_CommandCallback = Callable[
     [LLSE_Command, LLSE_CommandOrigin, LLSE_CommandOutput, dict[str, Any]],
-    Any,
+    bool,
 ]

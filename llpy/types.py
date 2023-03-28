@@ -141,6 +141,10 @@ from .classes.mc.types import T_BroadcastType_TIP as T_BroadcastType_TIP
 from .classes.mc.types import T_BroadcastType_TRANSLATION as T_BroadcastType_TRANSLATION
 from .classes.mc.types import T_BroadcastType_WHISPER as T_BroadcastType_WHISPER
 from .classes.mc.types import T_RunCmdExRet as T_RunCmdExRet
+from .classes.mc.types import T_StructRotationType as T_StructRotationType
+from .classes.mc.types import T_StructureMirrorType as T_StructureMirrorType
+from .classes.mc.types import T_TimeID as T_TimeID
+from .classes.mc.types import T_WeatherID as T_WeatherID
 from .classes.money.types import T_MoneyHistory as T_MoneyHistory
 from .classes.nbt.types import T_NbtBaseClass as T_NbtBaseClass
 from .classes.nbt.types import T_NbtClass as T_NbtClass
@@ -161,6 +165,8 @@ from .classes.nbt.types import T_ToNbtDict as T_ToNbtDict
 from .classes.nbt.types import T_ToNbtList as T_ToNbtList
 from .classes.nbt.types import T_ToNbtType as T_ToNbtType
 from .classes.network.types import T_HttpGetResp as T_HttpGetResp
+from .classes.objective.types import T_ScoreDisplaySlot as T_ScoreDisplaySlot
+from .classes.objective.types import T_ScoreSortOrder as T_ScoreSortOrder
 from .classes.particle.types import T_ParticleColor as T_ParticleColor
 from .classes.particle.types import T_ParticleColorApricot as T_ParticleColorApricot
 from .classes.particle.types import T_ParticleColorBlack as T_ParticleColorBlack

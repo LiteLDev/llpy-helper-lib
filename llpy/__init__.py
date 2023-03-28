@@ -49,6 +49,8 @@ from .classes.nbt.compound import NbtCompound as NbtCompound
 from .classes.nbt.list import NbtList as NbtList
 from .classes.nbt.static import NBT as NBT
 from .classes.network import network as network
+from .classes.objective import LLSE_Objective as LLSE_Objective
+from .classes.objective import Objective as Objective
 from .classes.packet import BinaryStream as BinaryStream
 from .classes.packet import LLSE_Packet as LLSE_Packet
 from .classes.packet import Packet as Packet
