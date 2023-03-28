@@ -4,6 +4,8 @@ from .classes.base.pos import FloatPos as FloatPos
 from .classes.base.pos import IntPos as IntPos
 from .classes.block import Block as Block
 from .classes.block import LLSE_Block as LLSE_Block
+from .classes.block.entity import BlockEntity as BlockEntity
+from .classes.block.entity import LLSE_BlockEntity as LLSE_BlockEntity
 from .classes.command import Command as Command
 from .classes.command import LLSE_Command as LLSE_Command
 from .classes.command.enums import OriginType as OriginType
