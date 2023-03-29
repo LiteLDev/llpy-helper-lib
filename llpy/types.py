@@ -118,6 +118,10 @@ from .classes.entity.types import T_DamageCauseTemperature as T_DamageCauseTempe
 from .classes.entity.types import T_DamageCauseThorns as T_DamageCauseThorns
 from .classes.entity.types import T_DamageCauseVoid as T_DamageCauseVoid
 from .classes.entity.types import T_DamageCauseWither as T_DamageCauseWither
+from .classes.file.types import T_FileOpenMode as T_FileOpenMode
+from .classes.file.types import T_FileOpenModeAppend as T_FileOpenModeAppend
+from .classes.file.types import T_FileOpenModeRead as T_FileOpenModeRead
+from .classes.file.types import T_FileOpenModeWrite as T_FileOpenModeWrite
 from .classes.i18n.types import T_I18NJson as T_I18NJson
 from .classes.ll.types import T_PluginInfo as T_PluginInfo
 from .classes.ll.types import T_VersionStatus as T_VersionStatus

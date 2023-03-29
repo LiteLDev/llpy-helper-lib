@@ -93,7 +93,7 @@ class LLSE_Item:
         Returns:
             是否赋值成功
         """
-    def clone(self) -> LLSE_Item:
+    def clone(self) -> LLSE_Item|None:
         """
         克隆物品对象
 

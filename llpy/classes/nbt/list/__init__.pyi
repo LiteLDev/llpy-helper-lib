@@ -180,7 +180,7 @@ class NbtList:
         Returns:
             指定位置储存的具体数据。如果要读取的 NBT 不存在，将返回 `None`
         """
-    def getTag(self, index: int) -> T_NbtClass:
+    def getTag(self, index: int) -> T_NbtClass|None:
         """
         读取某个下标位置的 NBT 对象
 

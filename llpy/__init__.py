@@ -27,6 +27,7 @@ from .classes.db.kvdb import KVDatabase as KVDatabase
 from .classes.entity import Entity as Entity
 from .classes.entity import LLSE_Entity as LLSE_Entity
 from .classes.entity.damagecause import ActorDamageCause as ActorDamageCause
+from .classes.file import File as File
 from .classes.form.custom import CustomForm as CustomForm
 from .classes.form.custom import LLSE_CustomForm as LLSE_CustomForm
 from .classes.form.simple import LLSE_SimpleForm as LLSE_SimpleForm
