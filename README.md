@@ -12,6 +12,12 @@ Use `pdm` to install, then you can import it in your plugin
 pdm add llpy-helper-lib
 ```
 
+or you can use lip
+
+```shell
+lip i github.com/lgc-LLSEDev/llpy-helper-lib
+```
+
 ## Usage
 
 ```py
