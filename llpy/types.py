@@ -80,6 +80,9 @@ from .classes.config.types import T_ToJsonDict as T_ToJsonDict
 from .classes.config.types import T_ToJsonList as T_ToJsonList
 from .classes.config.types import T_ToJsonType as T_ToJsonType
 from .classes.data.types import T_PlayerInfo as T_PlayerInfo
+from .classes.db.types import T_DBConnectParam as T_DBConnectParam
+from .classes.db.types import T_DBFetchAllCallback as T_DBFetchAllCallback
+from .classes.db.types import T_DBType as T_DBType
 from .classes.entity.types import T_DamageCause as T_DamageCause
 from .classes.entity.types import T_DamageCauseAnvil as T_DamageCauseAnvil
 from .classes.entity.types import (
