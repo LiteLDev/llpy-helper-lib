@@ -1233,7 +1233,7 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onStepOnPressurePlate"],
-        callback: Callable[[LLSE_Entity,LLSE_Block], Literal[False] | Any],
+        callback: Callable[[LLSE_Entity, LLSE_Block], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
