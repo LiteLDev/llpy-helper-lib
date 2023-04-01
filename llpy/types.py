@@ -153,6 +153,24 @@ from .classes.mc.types import T_StructureMirrorType as T_StructureMirrorType
 from .classes.mc.types import T_TimeID as T_TimeID
 from .classes.mc.types import T_WeatherID as T_WeatherID
 from .classes.money.types import T_MoneyHistory as T_MoneyHistory
+from .classes.native.types import T_NativeType as T_NativeType
+from .classes.native.types import T_NativeTypeBool as T_NativeTypeBool
+from .classes.native.types import T_NativeTypeChar as T_NativeTypeChar
+from .classes.native.types import T_NativeTypeDouble as T_NativeTypeDouble
+from .classes.native.types import T_NativeTypeFloat as T_NativeTypeFloat
+from .classes.native.types import T_NativeTypeInt as T_NativeTypeInt
+from .classes.native.types import T_NativeTypeLong as T_NativeTypeLong
+from .classes.native.types import T_NativeTypeLongLong as T_NativeTypeLongLong
+from .classes.native.types import T_NativeTypePointer as T_NativeTypePointer
+from .classes.native.types import T_NativeTypeShort as T_NativeTypeShort
+from .classes.native.types import T_NativeTypeUnsignedChar as T_NativeTypeUnsignedChar
+from .classes.native.types import T_NativeTypeUnsignedInt as T_NativeTypeUnsignedInt
+from .classes.native.types import T_NativeTypeUnsignedLong as T_NativeTypeUnsignedLong
+from .classes.native.types import (
+    T_NativeTypeUnsignedLongLong as T_NativeTypeUnsignedLongLong,
+)
+from .classes.native.types import T_NativeTypeUnsignedShort as T_NativeTypeUnsignedShort
+from .classes.native.types import T_NativeTypeVoid as T_NativeTypeVoid
 from .classes.nbt.types import T_NbtBaseClass as T_NbtBaseClass
 from .classes.nbt.types import T_NbtClass as T_NbtClass
 from .classes.nbt.types import T_NbtType as T_NbtType
@@ -172,6 +190,13 @@ from .classes.nbt.types import T_ToNbtDict as T_ToNbtDict
 from .classes.nbt.types import T_ToNbtList as T_ToNbtList
 from .classes.nbt.types import T_ToNbtType as T_ToNbtType
 from .classes.network.types import T_HttpGetResp as T_HttpGetResp
+from .classes.network.types import (
+    T_HTTPServerExceptionListener as T_HTTPServerExceptionListener,
+)
+from .classes.network.types import T_HTTPServerListener as T_HTTPServerListener
+from .classes.network.types import (
+    T_HTTPServerPreRoutingListener as T_HTTPServerPreRoutingListener,
+)
 from .classes.network.types import T_WSClientStatus as T_WSClientStatus
 from .classes.network.types import T_WSClientStatusClosed as T_WSClientStatusClosed
 from .classes.network.types import T_WSClientStatusClosing as T_WSClientStatusClosing

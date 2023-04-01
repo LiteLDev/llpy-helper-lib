@@ -40,7 +40,13 @@ from .classes.ll.version import Version as Version
 from .classes.logger import logger as logger
 from .classes.mc import mc as mc
 from .classes.money import money as money
+from .classes.native.enum import NativeTypes as NativeTypes
+from .classes.native.function import NativeFunction as NativeFunction
+from .classes.native.globalpointer import GlobalPointer as GlobalPointer
+from .classes.native.hook import NativeHook as NativeHook
+from .classes.native.patch import NativePatch as NativePatch
 from .classes.native.pointer import NativePointer as NativePointer
+from .classes.native.stdstring import NativeStdString as NativeStdString
 from .classes.nbt.base import NbtByte as NbtByte
 from .classes.nbt.base import NbtByteArray as NbtByteArray
 from .classes.nbt.base import NbtDouble as NbtDouble
@@ -54,6 +60,9 @@ from .classes.nbt.compound import NbtCompound as NbtCompound
 from .classes.nbt.list import NbtList as NbtList
 from .classes.nbt.static import NBT as NBT
 from .classes.network import network as network
+from .classes.network.httprequest import HttpRequest as HttpRequest
+from .classes.network.httpresponse import HttpResponse as HttpResponse
+from .classes.network.httpserver import HttpServer as HttpServer
 from .classes.network.wsclient import WSClient as WSClient
 from .classes.objective import LLSE_Objective as LLSE_Objective
 from .classes.objective import Objective as Objective
