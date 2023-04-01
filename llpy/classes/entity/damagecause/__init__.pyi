@@ -43,7 +43,7 @@ class ActorDamageCause:
     Override: T_DamageCauseOverride
     """伤害类型枚举 | 非正常伤害"""
     Contact: T_DamageCauseContact
-    """伤害类型枚举 | 仙人掌、浆果丛伤害"""
+    """伤害类型枚举 | 接触伤害（仙人掌、浆果丛）"""
     EntityAttack: T_DamageCauseEntityAttack
     """伤害类型枚举 | 实体攻击伤害"""
     Projectile: T_DamageCauseProjectile
@@ -53,9 +53,9 @@ class ActorDamageCause:
     Fall: T_DamageCauseFall
     """伤害类型枚举 | 摔落伤害"""
     Fire: T_DamageCauseFire
-    """伤害类型枚举 | 火焰伤害"""
+    """伤害类型枚举 | 燃烧伤害"""
     FireTick: T_DamageCauseFireTick
-    """伤害类型枚举 | 着火持续伤害"""
+    """伤害类型枚举 | 点燃伤害"""
     Lava: T_DamageCauseLava
     """伤害类型枚举 | 岩浆伤害"""
     Drowning: T_DamageCauseDrowning
@@ -75,11 +75,11 @@ class ActorDamageCause:
     Starve: T_DamageCauseStarve
     """伤害类型枚举 | 饥饿伤害"""
     Anvil: T_DamageCauseAnvil
-    """伤害类型枚举 | 铁砧砸中伤害"""
+    """伤害类型枚举 | 下落铁砧砸中伤害"""
     Thorns: T_DamageCauseThorns
     """伤害类型枚举 | 荆棘伤害"""
     FallingBlock: T_DamageCauseFallingBlock
-    """伤害类型枚举 | 掉落方块砸中伤害"""
+    """伤害类型枚举 | 下落方块砸中伤害"""
     Piston: T_DamageCausePiston
     """伤害类型枚举 | 活塞伤害"""
     FlyIntoWall: T_DamageCauseFlyIntoWall
@@ -99,6 +99,6 @@ class ActorDamageCause:
     Stalactite: T_DamageCauseStalactite
     """伤害类型枚举 | 钟乳石砸中伤害"""
     Stalagmite: T_DamageCauseStalagmite
-    """伤害类型枚举 | 钟乳石扎脚伤害"""
+    """伤害类型枚举 | 石笋扎脚伤害"""
 
 class DamageCause(_T_EnumDefineClass, ActorDamageCause): ...
