@@ -35,7 +35,7 @@ class mc:
 
     def __init__(self) -> NoReturn: ...
 
-    # region listen
+    # region listener
     @overload
     @staticmethod
     def listen(
@@ -275,29 +275,6 @@ class mc:
         Returns:
             是否成功监听事件
         """
-    # @overload
-    # @staticmethod
-    # def listen(
-    #     event: Literal["onPlayerSwing"],
-    #     callback: Callable[[LLSE_Player], Literal[False] | Any],
-    # ) -> bool:
-    #     """
-    #     注册监听器
-
-    #     onPlayerSwing 监听
-
-    #     拦截事件：未知
-
-    #     Callback Args:
-    #         player (LLSE_Player): 玩家对象
-
-    #     Args:
-    #         event: 要监听的事件名
-    #         callback: 注册的监听函数
-
-    #     Returns:
-    #         是否成功监听事件
-    #     """
     @overload
     @staticmethod
     def listen(
@@ -1014,30 +991,6 @@ class mc:
         Returns:
             是否成功监听事件
         """
-    # @overload
-    # @staticmethod
-    # def listen(
-    #     event: Literal["onOpenInventory"],
-    #     callback: Callable[..., Literal[False] | Any],
-    # ) -> bool:
-    #     """
-    #     注册监听器
-
-    #     onOpenInventory 监听
-
-    #     拦截事件：函数返回 `False`
-    #     拦截事件：不可以拦截
-
-    #     Callback Args:
-    #         cmd (str): 执行的后台命令
-
-    #     Args:
-    #         event: 要监听的事件名
-    #         callback: 注册的监听函数
-
-    #     Returns:
-    #         是否成功监听事件
-    #     """
     @overload
     @staticmethod
     def listen(
@@ -1233,7 +1186,7 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onStepOnPressurePlate"],
-        callback: Callable[[LLSE_Entity,LLSE_Block], Literal[False] | Any],
+        callback: Callable[[LLSE_Entity, LLSE_Block], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
@@ -1259,18 +1212,20 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onSpawnProjectile"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[LLSE_Entity, str], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onSpawnProjectile 监听
+        弹射物创建 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
+
+        注：已知可拦截的弹射物有鸡蛋、末影珍珠、雪球、三叉戟、箭、钓竿（鱼钩）。
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            shooter (LLSE_Entity): 发射弹射物的的实体对象
+            type (str): 弹射物标准类型名
 
         Args:
             event: 要监听的事件名
@@ -1283,18 +1238,18 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onProjectileCreated"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[LLSE_Entity, LLSE_Entity], Any],
     ) -> bool:
         """
         注册监听器
 
-        onProjectileCreated 监听
+        弹射物创建完毕 监听
 
-        拦截事件：函数返回 `False`
         拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            shooter (LLSE_Entity): 创建此弹射物的的实体对象
+            entity (LLSE_Entity): 被创建的弹射物实体对象
 
         Args:
             event: 要监听的事件名
@@ -1307,18 +1262,19 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onNpcCmd"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[LLSE_Entity, LLSE_Player, str], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onNpcCmd 监听
+        NPC 执行命令 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            npc (LLSE_Entity): 执行命令的 NPC 实体对象
+            player (LLSE_Player): 触发 NPC 命令执行的玩家对象
+            cmd (str): NPC 执行的命令
 
         Args:
             event: 要监听的事件名
@@ -1331,18 +1287,19 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onChangeArmorStand"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[LLSE_Entity, LLSE_Player, int], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onChangeArmorStand 监听
+        操作盔甲架 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            armor_stand (LLSE_Entity): 被操作的盔甲架实体对象
+            player (LLSE_Player): 操作盔甲架的玩家对象
+            slot (int): 装备栏编号
 
         Args:
             event: 要监听的事件名
@@ -1355,18 +1312,21 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onEntityTransformation"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[str, LLSE_Entity], Any],
     ) -> bool:
         """
         注册监听器
 
-        onEntityTransformation 监听
+        实体转变 监听
 
-        拦截事件：函数返回 `False`
         拦截事件：不可以拦截
 
+        注：此事件为 Addons 中实体的 TransformationComponent 激活时触发，多用于引擎与Addon交互。
+        由于转变前的实体指针很快被销毁，因此只提供 UniqueId。
+
         Callback Args:
-            cmd (str): 执行的后台命令
+            unique_id (str): 转变前的实体的唯一标识符
+            entity (LLSE_Entity): 转换完成的实体
 
         Args:
             event: 要监听的事件名
@@ -1379,18 +1339,20 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onBlockInteracted"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[LLSE_Player, LLSE_Block], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onBlockInteracted 监听
+        方块接受玩家互动 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
+
+        只有可以被互动的方块才会触发此事件，如木桶、信标、制图台、磨石等。拦截事件对箱子、潜影盒、工作台无效
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            player (LLSE_Player): 与方块互动的玩家对象
+            block (LLSE_Block): 被互动的方块对象
 
         Args:
             event: 要监听的事件名
@@ -1403,18 +1365,26 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onBlockChanged"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[LLSE_Block, LLSE_Block], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onBlockChanged 监听
+        方块改变 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
+
+        拦截此事件需要注意以下问题：
+
+        1. 部分事件导致的方块变化无法拦截, 比如玩家挖掘，放置
+        2. 对于方块与方块之间关系导致的变化，部分不可拦截，比如爆炸摧毁周围方块（实际上，客户端看起来那边还是存在方块的，但是已经是假方块了）
+        3. 但是对于火把这种需要附着在其他方块上的方块，如果因为附着方块被摧毁，那么火把不会随之被破坏
+
+        具体某些特性可以自行测试
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            before (LLSE_Block): 改变前的方块对象
+            after (LLSE_Block): 改变后的方块对象
 
         Args:
             event: 要监听的事件名
@@ -1427,18 +1397,25 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onBlockExplode"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[
+            [LLSE_Block, IntPos, float, float, bool, bool],
+            Literal[False] | Any,
+        ],
     ) -> bool:
         """
         注册监听器
 
-        onBlockExplode 监听
+        发生由方块引起的爆炸 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            source (LLSE_Block): 爆炸来源的方块对象
+            pos (IntPos): 爆炸发生的坐标
+            radius (float): 爆炸波及的半径
+            max_resistance (float): 爆炸可破坏的方块爆炸抗性上限
+            is_destroy (bool): 爆炸是否破坏方块
+            is_fire (bool): 爆炸是否产生火焰
 
         Args:
             event: 要监听的事件名
@@ -1451,18 +1428,18 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onRespawnAnchorExplode"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[IntPos, LLSE_Player], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onRespawnAnchorExplode 监听
+        发生由重生锚引起的爆炸 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            pos (IntPos): 爆炸发生的重生锚的坐标
+            player (LLSE_Player): 试图使用重生锚的玩家
 
         Args:
             event: 要监听的事件名
@@ -1475,18 +1452,18 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onBlockExploded"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[LLSE_Block, LLSE_Entity], Any],
     ) -> bool:
         """
         注册监听器
 
-        onBlockExploded 监听
+        方块被爆炸破坏 监听
 
-        拦截事件：函数返回 `False`
         拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            block (LLSE_Block): 被爆炸破坏的方块对象
+            source (LLSE_Entity): 爆炸来源的实体对象
 
         Args:
             event: 要监听的事件名
@@ -1499,18 +1476,17 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onFireSpread"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[IntPos], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onFireSpread 监听
+        火焰蔓延 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            pos (IntPos): 火焰蔓延到的方块坐标
 
         Args:
             event: 要监听的事件名
@@ -1523,18 +1499,19 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onCmdBlockExecute"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[str, IntPos, bool], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onCmdBlockExecute 监听
+        命令方块执行命令 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            cmd (str): 执行的命令
+            pos (IntPos): 执行命令的命令方块坐标
+            is_minecart (bool): 命令是否由命令方块矿车执行
 
         Args:
             event: 要监听的事件名
@@ -1547,18 +1524,30 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onContainerChange"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[LLSE_Player, LLSE_Block, int, LLSE_Item, LLSE_Item], Any],
     ) -> bool:
         """
         注册监听器
 
-        onContainerChange 监听
+        容器内容改变 监听
 
-        拦截事件：函数返回 `False`
         拦截事件：不可以拦截
 
+        对回调参数的解释：
+        旧物品对象与新物品对象有多种不同的组合情况，表示格子内不同的变化情况
+
+        - 放入物品：旧物品对象为空，新物品对象不为空
+        - 取出物品：旧物品对象不为空，新物品对象为空
+        - 物品增加堆叠：旧物品对象的 `type` == 新物品对象的 `type`，且旧物品对象的 `count` < 新物品对象的 `count`
+        - 物品减少堆叠：旧物品对象的 `type` == 新物品对象的 `type`，且旧物品对象的 `count` > 新物品对象的 `count`
+        - 替换物品：旧物品对象的 `type` 不等于 新物品对象的 `type`，且两物品对象均不为空
+
         Callback Args:
-            cmd (str): 执行的后台命令
+            player (LLSE_Player): 操作容器的玩家对象
+            container (LLSE_block): 被操作的容器的方块对象
+            slot_num (int): 操作容器的格子位置（第 `slotNum` 个格子）
+            old_item (LLSE_Item): 格子中的原来旧物品对象
+            new_item (LLSE_Item): 格子中新的物品对象
 
         Args:
             event: 要监听的事件名
@@ -1571,18 +1560,18 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onProjectileHitBlock"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[LLSE_Block, LLSE_Entity], Any],
     ) -> bool:
         """
         注册监听器
 
-        onProjectileHitBlock 监听
+        方块被弹射物击中 监听
 
-        拦截事件：函数返回 `False`
         拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            block (LLSE_Block): 被击中的方块对象
+            source (LLSE_Entity): 发射的弹射物实体（如箭）
 
         Args:
             event: 要监听的事件名
@@ -1595,18 +1584,21 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onRedStoneUpdate"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[LLSE_Block, int, bool], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onRedStoneUpdate 监听
+        发生红石更新 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
+
+        目前可以监测红石更新的方块种类有：红石线、红石火把、红石中继器、红石比较器
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            block (LLSE_Block): 发生红石更新的方块对象
+            level (int): 更新的红石能量等级（0-15）
+            is_active (bool): 表示红石更新是激活还是熄灭。为 `True` 表示红石变为激活状态，为 `False` 表示红石变为熄灭状态
 
         Args:
             event: 要监听的事件名
@@ -1619,18 +1611,21 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onHopperSearchItem"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[FloatPos, bool, LLSE_Item], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onHopperSearchItem 监听
+        漏斗（漏斗矿车）检测可否吸取物品 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
+
+        注：在放置漏斗之后，会在服务端反复不断触发这个事件，当你拦截事件之后，漏斗就会无法吸取这个物品
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            pos (FloatPos): 漏斗（漏斗矿车）所在的位置
+            is_minecart (bool): 是否为漏斗矿车
+            item (LLSE_Item): 检测到的物品对象
 
         Args:
             event: 要监听的事件名
@@ -1643,18 +1638,19 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onHopperPushOut"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[FloatPos, bool, LLSE_Item], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onHopperPushOut 监听
+        漏斗输出物品 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            pos (FloatPos): 漏斗（漏斗矿车）所在的位置
+            is_minecart (bool): 是否为漏斗矿车
+            item (LLSE_Item): 准备输出的物品对象
 
         Args:
             event: 要监听的事件名
@@ -1667,18 +1663,20 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onPistonTryPush"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[IntPos, LLSE_Block], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onPistonTryPush 监听
+        活塞尝试推动 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
+
+        若活塞被方块阻挡无法推动，此事件将会不停地循环触发
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            piston_pos (IntPos): 正在工作的活塞坐标
+            block (LLSE_Block): 尝试被推动的方块对象
 
         Args:
             event: 要监听的事件名
@@ -1691,18 +1689,20 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onPistonPush"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[IntPos, LLSE_Block], Any],
     ) -> bool:
         """
         注册监听器
 
-        onPistonPush 监听
+        活塞推动 监听
 
-        拦截事件：函数返回 `False`
         拦截事件：不可以拦截
 
+        注：此事件与上事件不同，上一个 Try 事件在活塞推动前尝试时触发，此事件在推动完毕后触发
+
         Callback Args:
-            cmd (str): 执行的后台命令
+            piston_pos (IntPos): 正在工作的活塞坐标
+            block (LLSE_Block): 被推动的方块对象
 
         Args:
             event: 要监听的事件名
@@ -1715,18 +1715,18 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onFarmLandDecay"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[IntPos, LLSE_Entity], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onFarmLandDecay 监听
+        耕地退化 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            pos (IntPos): 退化的耕地的坐标
+            entity (LLSE_Entity): 造成耕地退化的实体
 
         Args:
             event: 要监听的事件名
@@ -1739,18 +1739,20 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onUseFrameBlock"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[LLSE_Player, LLSE_Block], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onUseFrameBlock 监听
+        操作物品展示框 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
+
+        注：操作包括放置物品、取下物品、旋转物品。
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            player (LLSE_Player): 操作物品展示框的玩家对象
+            block (LLSE_Block): 被操作的物品展示框方块对象
 
         Args:
             event: 要监听的事件名
@@ -1763,18 +1765,18 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onLiquidFlow"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[LLSE_Block, IntPos], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onLiquidFlow 监听
+        液体方块流动 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            from (LLSE_Block): 水源方块对象
+            to (IntPos): 即将流经的方块位置
 
         Args:
             event: 要监听的事件名
@@ -1787,18 +1789,20 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onScoreChanged"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[LLSE_Player, int, str, str], Any],
     ) -> bool:
         """
         注册监听器
 
-        onScoreChanged 监听
+        玩家计分板数值改变 监听
 
-        拦截事件：函数返回 `False`
         拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            player (LLSE_Player): 计分板数值改变的玩家
+            num (int): 改变后的计分板数值
+            name (str): 计分板计分项名称
+            display_name (str): 计分板计分项的显示名称
 
         Args:
             event: 要监听的事件名
@@ -1811,18 +1815,14 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onTick"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[], Any],
     ) -> bool:
         """
         注册监听器
 
-        onTick 监听
+        每个游戏刻触发 监听
 
-        拦截事件：函数返回 `False`
         拦截事件：不可以拦截
-
-        Callback Args:
-            cmd (str): 执行的后台命令
 
         Args:
             event: 要监听的事件名
@@ -1835,18 +1835,14 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onServerStarted"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onServerStarted 监听
+        服务器启动完毕 监听
 
-        拦截事件：函数返回 `False`
         拦截事件：不可以拦截
-
-        Callback Args:
-            cmd (str): 执行的后台命令
 
         Args:
             event: 要监听的事件名
@@ -1859,15 +1855,14 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onConsoleCmd"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[str], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onConsoleCmd 监听
+        服务端执行后台命令 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
             cmd (str): 执行的后台命令
@@ -1883,18 +1878,17 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onConsoleOutput"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[str], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        onConsoleOutput 监听
+        控制台产生命令输出 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            cmd (str): 输出的命令结果信息
 
         Args:
             event: 要监听的事件名
@@ -1907,18 +1901,18 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onMoneyAdd"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[str, int], Any],
     ) -> bool:
         """
         注册监听器
 
-        onMoneyAdd 监听
+        玩家金额增加事件 监听
 
-        拦截事件：函数返回 `False`
         拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            xuid (str): 金额变动的玩家的 XUID
+            money (int): 增加的金额
 
         Args:
             event: 要监听的事件名
@@ -1931,18 +1925,18 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onMoneyReduce"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[str, int], Any],
     ) -> bool:
         """
         注册监听器
 
-        onMoneyReduce 监听
+        玩家金额增加事件 监听
 
-        拦截事件：函数返回 `False`
         拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            xuid (str): 金额变动的玩家的 XUID
+            money (int): 增加的金额
 
         Args:
             event: 要监听的事件名
@@ -1955,18 +1949,21 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onMoneyTrans"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[str, str, int], Any],
     ) -> bool:
         """
         注册监听器
 
-        onMoneyTrans 监听
+        玩家转账事件 监听
 
-        拦截事件：函数返回 `False`
         拦截事件：不可以拦截
 
+        注意: 当 `onMoneyReduce` 或 `onMoneyAdd` 被触发时，该事件也会被触发
+
         Callback Args:
-            cmd (str): 执行的后台命令
+            from (str): 发起转账的玩家的 XUID
+            to (str): 接受转账的玩家的 XUID
+            money (int): 增加的金额
 
         Args:
             event: 要监听的事件名
@@ -1979,18 +1976,18 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onMoneySet"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[str, int], Any],
     ) -> bool:
         """
         注册监听器
 
-        onMoneySet 监听
+        直接设置玩家金额事件 监听
 
-        拦截事件：函数返回 `False`
         拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            xuid (str): 金额变动的玩家的 XUID
+            money (int): 被设置的金额
 
         Args:
             event: 要监听的事件名
@@ -2003,18 +2000,18 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["beforeMoneyAdd"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[str, int], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        beforeMoneyAdd 监听
+        玩家金额增加前事件 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            xuid (str): 金额变动的玩家的 XUID
+            money (int): 增加的金额
 
         Args:
             event: 要监听的事件名
@@ -2027,18 +2024,18 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["beforeMoneyReduce"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[str, int], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        beforeMoneyReduce 监听
+        玩家金额减少前事件 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            xuid (str): 金额变动的玩家的 XUID
+            money (int): 减少的金额
 
         Args:
             event: 要监听的事件名
@@ -2051,18 +2048,19 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["beforeMoneyTrans"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[str, str, int], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        beforeMoneyTrans 监听
+        玩家转账前事件 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
+            from (str): 发起转账的玩家的 XUID
+            to (str): 接受转账的玩家的 XUID
+            money (int): 增加的金额
 
         Args:
             event: 要监听的事件名
@@ -2075,42 +2073,18 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["beforeMoneySet"],
-        callback: Callable[[...], Literal[False] | Any],
+        callback: Callable[[str, int], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        beforeMoneySet 监听
+        设置玩家金额前事件 监听
 
         拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
 
         Callback Args:
-            cmd (str): 执行的后台命令
-
-        Args:
-            event: 要监听的事件名
-            callback: 注册的监听函数
-
-        Returns:
-            是否成功监听事件
-        """
-    @overload
-    @staticmethod
-    def listen(
-        event: Literal["onFormResponsePacket"],
-        callback: Callable[[...], Literal[False] | Any],
-    ) -> bool:
-        """
-        注册监听器
-
-        onFormResponsePacket 监听
-
-        拦截事件：函数返回 `False`
-        拦截事件：不可以拦截
-
-        Callback Args:
-            cmd (str): 执行的后台命令
+            xuid (str): 金额变动的玩家的 XUID
+            money (int): 被设置的金额
 
         Args:
             event: 要监听的事件名
