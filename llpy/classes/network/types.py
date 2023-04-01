@@ -1,4 +1,7 @@
-from typing import Literal, TypedDict
+from typing import Any, Callable, Literal, TypedDict
+
+from .httprequest import HttpRequest
+from .httpresponse import HttpResponse
 
 
 class T_HttpGetResp(TypedDict):
@@ -16,3 +19,7 @@ T_WSClientStatusClosed = Literal[2]
 T_WSClientStatus = (
     T_WSClientStatusOpen | T_WSClientStatusClosing | T_WSClientStatusClosed
 )
+
+T_HTTPServerListener = Callable[[HttpRequest, HttpResponse], Any]
+T_HTTPServerPreRoutingListener = Callable[[HttpRequest, HttpResponse], bool]
+T_HTTPServerExceptionListener = Callable[[HttpRequest, HttpResponse, str], Any]
