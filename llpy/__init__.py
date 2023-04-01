@@ -54,6 +54,7 @@ from .classes.nbt.compound import NbtCompound as NbtCompound
 from .classes.nbt.list import NbtList as NbtList
 from .classes.nbt.static import NBT as NBT
 from .classes.network import network as network
+from .classes.network.wsclient import WSClient as WSClient
 from .classes.objective import LLSE_Objective as LLSE_Objective
 from .classes.objective import Objective as Objective
 from .classes.packet import BinaryStream as BinaryStream
@@ -69,7 +70,6 @@ from .classes.player import Player as Player
 from .classes.player.device import Device as Device
 from .classes.player.device import LLSE_Device as LLSE_Device
 from .classes.system import system as system
-from .classes.wsclient import WSClient as WSClient
 from .functions import clearInterval as clearInterval
 from .functions import colorLog as colorLog
 from .functions import fastLog as fastLog

@@ -2,8 +2,9 @@ from typing import Any, Callable, NoReturn, overload
 
 from typing_extensions import deprecated
 
-from llpy import WSClient
 from llpy.types import T_HttpGetResp
+
+from .wsclient import WSClient
 
 class network:
     """网络接口 API"""

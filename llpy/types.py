@@ -172,6 +172,10 @@ from .classes.nbt.types import T_ToNbtDict as T_ToNbtDict
 from .classes.nbt.types import T_ToNbtList as T_ToNbtList
 from .classes.nbt.types import T_ToNbtType as T_ToNbtType
 from .classes.network.types import T_HttpGetResp as T_HttpGetResp
+from .classes.network.types import T_WSClientStatus as T_WSClientStatus
+from .classes.network.types import T_WSClientStatusClosed as T_WSClientStatusClosed
+from .classes.network.types import T_WSClientStatusClosing as T_WSClientStatusClosing
+from .classes.network.types import T_WSClientStatusOpen as T_WSClientStatusOpen
 from .classes.objective.types import T_ScoreDisplaySlot as T_ScoreDisplaySlot
 from .classes.objective.types import T_ScoreSortOrder as T_ScoreSortOrder
 from .classes.particle.types import T_ParticleColor as T_ParticleColor
@@ -212,7 +216,3 @@ from .classes.player.types import T_SimpleFormCallback as T_SimpleFormCallback
 from .classes.player.types import T_TextPacketType as T_TextPacketType
 from .classes.player.types import T_TitlePacketType as T_TitlePacketType
 from .classes.system.types import T_TimeObj as T_TimeObj
-from .classes.wsclient.types import T_WSClientStatus as T_WSClientStatus
-from .classes.wsclient.types import T_WSClientStatusClosed as T_WSClientStatusClosed
-from .classes.wsclient.types import T_WSClientStatusClosing as T_WSClientStatusClosing
-from .classes.wsclient.types import T_WSClientStatusOpen as T_WSClientStatusOpen
