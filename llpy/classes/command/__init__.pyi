@@ -214,7 +214,15 @@ class LLSE_Command:
         Returns:
             是否成功设置
         """
-    def setup(self) -> bool: ...
+    def setup(self) -> bool:
+        """
+        安装指令
+
+        在对命令的所有配置完成之后，使用此函数将命令注册到 BDS 的命令系统当中
+
+        Returns:
+            是否成功安装
+        """
     def setSoftEnum(self, name: str, enums: str) -> str: ...
     def addSoftEnumValues(self, name: str, enums: str) -> bool: ...
     def removeSoftEnumValues(self, name: str, enums: str) -> bool: ...

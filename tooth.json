@@ -1,11 +1,11 @@
 {
   "format_version": 1,
   "tooth": "github.com/lgc-LLSEDev/llpy-helper-lib",
-  "version": "0.0.0-dev.8",
+  "version": "0.1.0",
   "information": {
-    "name": "llpy-helper-lib",
+    "name": "llpy",
     "author": "lgc-LLSEDev",
-    "description": "Helper Lib for LLSE Python Runtime",
+    "description": "A typing & util lib for LLSE Python runtime | 为 LLSE Python 运行时开发的 类型提示/工具库",
     "license": "MIT",
     "homepage": "https://github.com/lgc-LLSEDev/llpy-helper-lib"
   },

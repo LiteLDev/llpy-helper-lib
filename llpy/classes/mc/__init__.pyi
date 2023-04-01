@@ -34,20 +34,1769 @@ class mc:
 
     def __init__(self) -> NoReturn: ...
 
-    # TODO Listeners
     # region listen
     @overload
     @staticmethod
     def listen(
-        event: Literal["onServerStarted"],
-        callback: Callable[[], Any],
+        event: Literal["onPreJoin"],
+        callback: Callable[[LLSE_Player], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        服务器启动完毕 监听
+        玩家开始连接服务器 监听
+
+        拦截事件：函数返回 `False`
+
+        注：在这个监听函数中只能获取一些玩家的基础信息，比如名字、IP、XUID等。因为此时玩家尚未完全进服
+
+        Callback Args:
+            player (LLSE_Player): 正在连接服务器的玩家对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onJoin"],
+        callback: Callable[[LLSE_Player], Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家进入游戏（加载世界完成） 监听
 
         拦截事件：不可以拦截
+
+        Callback Args:
+            player (LLSE_Player): 进入游戏的玩家对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onLeft"],
+        callback: Callable[[LLSE_Player], Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家离开游戏 监听
+
+        拦截事件：不可以拦截
+
+        Callback Args:
+            player (LLSE_Player): 离开游戏的玩家对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onRespawn"],
+        callback: Callable[[LLSE_Player], Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家重生 监听
+
+        拦截事件：不可以拦截
+
+        Callback Args:
+            player (LLSE_Player): 重生的玩家对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onPlayerDie"],
+        callback: Callable[[LLSE_Player, LLSE_Entity | None], Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家死亡 监听
+
+        拦截事件：不可以拦截
+
+        Callback Args:
+            player (LLSE_Player): 死亡的玩家对象
+            source (LLSE_Entity | None): 伤害来源的实体对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onPlayerCmd"],
+        callback: Callable[[LLSE_Player, str], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家执行命令 监听
+
+        拦截事件：函数返回 `False`
+
+        Callback Args:
+            player (LLSE_Player): 执行命令的玩家对象
+            cmd (str): 执行的命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onChat"],
+        callback: Callable[[LLSE_Player, str], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家发送聊天信息 监听
+
+        拦截事件：函数返回 `False`
+
+        Callback Args:
+            player (LLSE_Player): 发送聊天信息的玩家对象
+            msg (str): 发送的聊天消息
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onChangeDim"],
+        callback: Callable[[LLSE_Player, T_DimID], Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家切换维度 监听
+
+        拦截事件：不可以拦截
+
+        提醒：当玩家从末地通过返回传送门返回主世界时，不会触发此事件。
+
+        Callback Args:
+            player (LLSE_Player): 切换维度的玩家对象
+            dim_id (T_DimID): 前往维度的维度 ID
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onJump"],
+        callback: Callable[[LLSE_Player], Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家跳跃 监听
+
+        拦截事件：不可以拦截
+
+        Callback Args:
+            player (LLSE_Player): 跳跃的玩家对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onSneak"],
+        callback: Callable[[LLSE_Player, bool], Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家切换潜行状态 监听
+
+        拦截事件：不可以拦截
+
+        Callback Args:
+            player (LLSE_Player): 切换潜行状态的玩家对象
+            is_sneaking (bool): `True` 表示玩家进入潜行状态，`False` 表示玩家退出潜行状态
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onPlayerSwing"],
+        callback: Callable[[LLSE_Player], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onPlayerSwing 监听
+
+        拦截事件：未知
+
+        Callback Args:
+            player (LLSE_Player): 玩家对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onAttackEntity"],
+        callback: Callable[[LLSE_Player, LLSE_Entity, float], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家攻击实体 监听
+
+        拦截事件：函数返回 `False`
+
+        Callback Args:
+            player (LLSE_Player): 攻击实体的玩家对象
+            entity (LLSE_Entity): 被攻击的实体对象
+            damage (float): 攻击所造成的伤害
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onAttackBlock"],
+        callback: Callable[[LLSE_Player, LLSE_Entity, LLSE_Item], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家攻击方块 监听
+
+        拦截事件：函数返回 `False`
+
+        Callback Args:
+            player (LLSE_Player): 攻击方块的玩家对象
+            entity (LLSE_Entity): 被攻击的方块对象
+            item (LLSE_Item): 手持的物品对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onUseItem"],
+        callback: Callable[[LLSE_Player, LLSE_Item], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家使用物品 监听
+
+        拦截事件：函数返回 `False`
+
+        Callback Args:
+            player (LLSE_Player): 使用物品的玩家对象
+            item (LLSE_Item): 被使用的物品对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onUseItemOn"],
+        callback: Callable[
+            [LLSE_Player, LLSE_Item, LLSE_Block, Literal[0, 1, 2, 3, 4, 5], FloatPos],
+            Literal[False] | Any,
+        ],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家对方块使用物品（点击右键） 监听
+
+        拦截事件：函数返回 `False`
+
+        注：Win10 客户端玩家右键会在服务端连续多次激发这个事件
+
+        Callback Args:
+            player (LLSE_Player): 使用物品的玩家对象
+            item (LLSE_Item): 被使用的物品对象
+            block (LLSE_Block): 被点击到的方块对象
+            side (int): 方块被点击的面，依次为：`0`-下 `1`-上 `2`-北 `3`-南 `4`-西 `5`-东
+            pos (FloatPos): 被点击的浮点位置
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onUseBucketPlace"],
+        callback: Callable[
+            [LLSE_Player, LLSE_Item, LLSE_Block, Literal[0, 1, 2, 3, 4, 5], FloatPos],
+            Literal[False] | Any,
+        ],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家使用桶倒出东西 监听
+
+        拦截事件：函数返回 `False`
+
+        注：无论是手机还是 Win10 玩家，可能会连续多次激发这个事件
+
+        Callback Args:
+            player (LLSE_Player): 使用物品的玩家对象
+            item (LLSE_Item): 被使用的物品对象
+            block (LLSE_Block): 被点击到的方块对象
+            side (int): 方块被点击的面，依次为：`0`-下 `1`-上 `2`-北 `3`-南 `4`-西 `5`-东
+            pos (FloatPos): 被点击的浮点位置
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onUseBucketTake"],
+        callback: Callable[
+            [
+                LLSE_Player,
+                LLSE_Item,
+                LLSE_Block | LLSE_Entity,
+                Literal[0, 1, 2, 3, 4, 5],
+                FloatPos,
+            ],
+            Literal[False] | Any,
+        ],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家使用桶装进东西 监听
+
+        拦截事件：函数返回 `False`
+
+        注：无论是手机还是 Win10 玩家，可能会连续多次激发这个事件
+
+        Callback Args:
+            player (LLSE_Player): 使用物品的玩家对象
+            item (LLSE_Item): 被使用的物品对象
+            target (LLSE_Block | LLSE_Entity): 被点击到的方块 / 实体对象
+            side (int): 方块被点击的面，依次为：`0`-下 `1`-上 `2`-北 `3`-南 `4`-西 `5`-东
+            pos (FloatPos): 被点击的浮点位置
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onTakeItem"],
+        callback: Callable[[LLSE_Player, LLSE_Entity, LLSE_Item], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家捡起物品 监听
+
+        拦截事件：函数返回 `False`
+
+        Callback Args:
+            player (LLSE_Player): 捡起物品的玩家对象
+            entity (LLSE_Entity): 即将被捡起的物品的掉落物实体
+            item (LLSE_Item): 即将被捡起的物品对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onDropItem"],
+        callback: Callable[[LLSE_Player, LLSE_Item], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家丢出物品 监听
+
+        拦截事件：函数返回 `False`
+
+        Callback Args:
+            player (LLSE_Player): 丢出物品的玩家对象
+            item (LLSE_Item): 被丢出的物品对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onEat"],
+        callback: Callable[[LLSE_Player, LLSE_Item], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家正在吃食物 监听
+
+        拦截事件：函数返回 `False`
+
+        此处的 食物 为宽泛物品的概念，包括常规食物、药水、牛奶、药品等多种可以被摄取的物品
+
+        Callback Args:
+            player (LLSE_Player): 正在吃的玩家对象
+            item (LLSE_Item): 被吃的物品对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onAte"],
+        callback: Callable[[LLSE_Player, LLSE_Item], Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家吃下食物 监听
+
+        拦截事件：不可以拦截
+
+        Callback Args:
+            player (LLSE_Player): 正在吃的玩家对象
+            item (LLSE_Item): 被吃的物品对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onConsumeTotem"],
+        callback: Callable[[LLSE_Player], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家消耗图腾 监听
+
+        拦截事件：函数返回 `False`
+
+        此处拦截后，仍会触发图腾的复活效果，但不会消耗图腾
+
+        Callback Args:
+            player (LLSE_Player): 消耗图腾的玩家对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onEffectAdded"],
+        callback: Callable[[LLSE_Player, str, int, int], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家获得效果 监听
+
+        拦截事件：函数返回 `False`
+
+        Callback Args:
+            player (LLSE_Player): 获得效果的玩家对象
+            effect_name (str): 获得的效果名称（`minecraft:effect.效果`）
+            amplifier (int): 获得的效果倍率（效果等级 -1）
+            duration (int): 获得的效果时长（单位：tick）
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onEffectUpdated"],
+        callback: Callable[[LLSE_Player, str, int, int], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家刷新效果 监听
+
+        拦截事件：函数返回 `False`
+
+        Callback Args:
+            player (LLSE_Player): 获得效果的玩家对象
+            effect_name (str): 获得的效果名称（`minecraft:effect.效果`）
+            amplifier (int): 获得的效果倍率（效果等级 -1）
+            duration (int): 获得的效果时长（单位：tick）
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onEffectRemoved"],
+        callback: Callable[[LLSE_Player, str], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家移除效果 监听
+
+        拦截事件：函数返回 `False`
+
+        Callback Args:
+            player (LLSE_Player): 被移除效果的玩家对象
+            effect_name (str): 被移除的效果名称（`minecraft:effect.效果`）
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onStartDestroyBlock"],
+        callback: Callable[[LLSE_Player, LLSE_Block], Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家开始破坏方块 / 点击左键 监听
+
+        拦截事件：不可以拦截
+
+        Callback Args:
+            player (LLSE_Player): 正在破坏方块的玩家对象
+            block (LLSE_Block): 正在被破坏的方块对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onDestroyBlock"],
+        callback: Callable[[LLSE_Player, LLSE_Block], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家破坏方块完成 监听
+
+        拦截事件：函数返回 `False`
+
+        Callback Args:
+            player (LLSE_Player): 破坏方块的玩家对象
+            block (LLSE_Block): 被破坏的方块对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onPlaceBlock"],
+        callback: Callable[[LLSE_Player, LLSE_Block], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onPlaceBlock 监听
+
+        拦截事件：函数返回 `False`
+
+        存在问题：
+        1. 当玩家尝试放置方块时，该事件将持续被触发。
+        2. 方块对象为准星对准的方块，并非将放置方块对象。
+
+        Callback Args:
+            player (LLSE_Player): 放置方块的玩家对象
+            block (LLSE_Block): 将要放置的方块对象
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["afterPlaceBlock"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        afterPlaceBlock 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onOpenContainer"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onOpenContainer 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onCloseContainer"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onCloseContainer 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onInventoryChange"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onInventoryChange 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onChangeSprinting"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onChangeSprinting 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onSetArmor"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onSetArmor 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onUseRespawnAnchor"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onUseRespawnAnchor 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onOpenContainerScreen"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onOpenContainerScreen 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onExperienceAdd"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onExperienceAdd 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onBedEnter"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onBedEnter 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onOpenInventory"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onOpenInventory 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onMobDie"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onMobDie 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onMobHurt"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onMobHurt 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onEntityExplode"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onEntityExplode 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onProjectileHitEntity"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onProjectileHitEntity 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onWitherBossDestroy"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onWitherBossDestroy 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onEnderDragonDestroy"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onEnderDragonDestroy 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onRide"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onRide 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onStepOnPressurePlate"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onStepOnPressurePlate 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onSpawnProjectile"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onSpawnProjectile 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onProjectileCreated"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onProjectileCreated 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onNpcCmd"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onNpcCmd 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onChangeArmorStand"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onChangeArmorStand 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onEntityTransformation"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onEntityTransformation 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onBlockInteracted"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onBlockInteracted 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onBlockChanged"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onBlockChanged 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onBlockExplode"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onBlockExplode 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onRespawnAnchorExplode"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onRespawnAnchorExplode 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onBlockExploded"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onBlockExploded 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onFireSpread"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onFireSpread 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onCmdBlockExecute"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onCmdBlockExecute 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onContainerChange"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onContainerChange 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onProjectileHitBlock"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onProjectileHitBlock 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onRedStoneUpdate"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onRedStoneUpdate 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onHopperSearchItem"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onHopperSearchItem 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onHopperPushOut"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onHopperPushOut 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onPistonTryPush"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onPistonTryPush 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onPistonPush"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onPistonPush 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onFarmLandDecay"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onFarmLandDecay 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onUseFrameBlock"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onUseFrameBlock 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onLiquidFlow"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onLiquidFlow 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onScoreChanged"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onScoreChanged 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onTick"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onTick 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onServerStarted"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onServerStarted 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
 
         Args:
             event: 要监听的事件名
@@ -60,17 +1809,322 @@ class mc:
     @staticmethod
     def listen(
         event: Literal["onConsoleCmd"],
-        callback: Callable[[str], Any],
+        callback: Callable[[...], Literal[False] | Any],
     ) -> bool:
         """
         注册监听器
 
-        服务端执行后台命令 监听
+        onConsoleCmd 监听
 
         拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
 
         Callback Args:
             cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onConsoleOutput"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onConsoleOutput 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onMoneyAdd"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onMoneyAdd 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onMoneyReduce"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onMoneyReduce 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onMoneyTrans"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onMoneyTrans 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onMoneySet"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onMoneySet 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["beforeMoneyAdd"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        beforeMoneyAdd 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["beforeMoneyReduce"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        beforeMoneyReduce 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["beforeMoneyTrans"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        beforeMoneyTrans 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["beforeMoneySet"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        beforeMoneySet 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onFormResponsePacket"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onFormResponsePacket 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onMobTrySpawn"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onMobTrySpawn 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
+        event: Literal["onMobSpawned"],
+        callback: Callable[[...], Literal[False] | Any],
+    ) -> bool:
+        """
+        注册监听器
+
+        onMobSpawned 监听
+
+        拦截事件：函数返回 `False`
+        拦截事件：不可以拦截
+
+        Callback Args:
+            cmd (str): 执行的后台命令
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    # fallback
+    @overload
+    @staticmethod
+    def listen(event: str, callback: Callable[..., Literal[False] | Any]) -> bool:
+        """
+        注册监听器
+
+        拦截事件：函数返回 `False`（部分事件无法拦截）
 
         Args:
             event: 要监听的事件名
