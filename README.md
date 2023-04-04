@@ -23,7 +23,7 @@ or you can use lip to install in global LLSE Python `site-packages` path
 或者使用 `lip` 安装到全局 LLSE Python `site-packages` 目录
 
 ```shell
-lip i llpy
+lip i llpy-helper-lib
 ```
 
 ## Usage / 用法
@@ -118,7 +118,7 @@ ll.registerPlugin(
 
 QQ：3076823485  
 QQ Group：[1105946125](https://jq.qq.com/?_wv=1027&k=Z3n1MpEp)  
-E-mail：<lgc2333@126.com>
+E-mail：<lgc2333@126.com>  
 Telegram: [@lgc2333](https://t.me/lgc2333)
 
 ## Sponsor / 赞助
