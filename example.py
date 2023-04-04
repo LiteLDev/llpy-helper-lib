@@ -10,8 +10,9 @@ if TYPE_CHECKING:
     # 可以从 `llpy` 导入所有的 LLSE 内置类
     from llpy import *
 
-    # you can input some types from `llpy.types`
-    # 可以从 `llpy.types` 导入本补全库提供的类型
+    # you can input types provided by llpy from `llpy.types`
+    # (add quotes when using these types because you didn't import it at runtime)
+    # 可以从 `llpy.types` 导入本补全库提供的类型（使用时需要加引号，因为没在运行时内导入）
     from llpy.types import *
 
 # endregion
