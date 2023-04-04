@@ -30,31 +30,11 @@ lip i llpy-helper-lib
 
 **[example.py](./example.py)**
 
-## Contact / 联系我
-
-QQ：3076823485  
-QQ Group：[1105946125](https://jq.qq.com/?_wv=1027&k=Z3n1MpEp)  
-E-mail：<lgc2333@126.com>  
-Telegram: [@lgc2333](https://t.me/lgc2333)
-
-## Sponsor / 赞助
-
-Thank you all for your patronage! Your patronage will be my encouragement to continue creating!
-
-感谢大家的赞助！你们的赞助将是我继续创作的动力！
-
-- [AFDian / 爱发电](https://afdian.net/@lgc2333)
-- <details>
-    <summary>
-      Sponsor QR Code / 赞助二维码<br />
-      Alipay / WeChat Pay / QQ Pay<br />
-      Click to Expand / 点击展开
-    </summary>
-
-  ![讨饭](https://raw.githubusercontent.com/lgc2333/ShigureBotMenu/master/src/imgs/sponsor.png)
-
-  </details>
-
 ## Update Log / 更新日志
 
-None / 暂无
+### 0.2.0
+
+- Removed module `llpy.utils`  
+  删除了 `llpy.utils` 模块
+- Added things from `BaseLib.py`  
+  添加了来自 `BaseLib.py` 的东西
