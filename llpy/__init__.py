@@ -82,6 +82,7 @@ from .classes.system import system as system
 from .functions import clearInterval as clearInterval
 from .functions import colorLog as colorLog
 from .functions import fastLog as fastLog
+from .functions import listener as listener
 from .functions import log as log
 from .functions import setInterval as setInterval
 from .functions import setTimeout as setTimeout

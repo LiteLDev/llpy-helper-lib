@@ -10,12 +10,12 @@ A typing & util lib for LLSE Python runtime
 
 ## Install / 安装
 
-Use `pdm` to install as plugin dependency
+Use `pip` or other Python package managers to install globally for type hints.
 
-使用 `pdm` 作为插件依赖安装
+使用 `pip` 或其他包管理器全局安装来提供类型提示
 
 ```shell
-pdm add llpy-helper-lib
+pip install llpy-helper-lib
 ```
 
 or you can use lip to install in global LLSE Python `site-packages` path
@@ -28,91 +28,7 @@ lip i llpy-helper-lib
 
 ## Usage / 用法
 
-```py
-from typing import cast
-
-# you can input any ll's built-ins from `llpy`
-# 可以从 `llpy` 导入所有的 LLSE 内置类
-from llpy import (
-    LLSE_CommandOrigin,
-    LLSE_CommandOutput,
-    ParamType,
-    PermType,
-    Version,
-    colorLog,
-    ll,
-    logger,
-    mc,
-)
-
-# you can input some types from `llpy.types`
-# 可以从 `llpy.types` 导入本补全库提供的类型
-from llpy.types import T_CommandCallbackResult
-
-# you can input some utils from `llpy.utils`
-# 可以从 `llpy.utils` 导入本库提供的实用函数/类
-from llpy.utils import command_callback, listener
-
-# register a listener
-# 注册一个监听器
-mc.listen("onServerStarted", lambda: colorLog("green", "The Server Started!"))
-
-
-# or you can use the decorator from `llpy.utils`
-# 也可以用 `llpy.utils` 里的装饰器注册
-@listener("onConsoleCmd")
-def _(cmd: str):
-    logger.info(f'You typed "{cmd}"')
-
-
-# register a command
-# 注册一个指令
-cmd = mc.newCommand("testcmd", "A Test Command", PermType.Any)
-cmd.optional("input", ParamType.RawText)
-cmd.overload(["input"])
-
-
-# set callback using `command_callback` decorator from `llpy.utils`
-# 可以使用 `llpy.utils` 里的装饰器设置指令回调函数
-@command_callback(cmd)
-def _(
-    _,
-    ori: LLSE_CommandOrigin,
-    out: LLSE_CommandOutput,
-    res: dict[str, T_CommandCallbackResult],
-):
-    arg = cast(str | None, res.get("input"))
-    tip = f'§aYou inputed §r"§6§l{arg}§r"' if arg else "§cNothing inputted!"
-
-    player = ori.player
-    if player:
-        # if player exec the cmd, send a form
-        # 如果是玩家执行命令，发送表单
-        form = mc.newSimpleForm().setTitle("Test Form").setContent(tip)
-        player.sendForm(form, lambda _, __: None)
-
-    else:
-        # if not, send output to console
-        # 不是玩家执行则输出到控制台
-        out.success(tip) if arg else out.error(tip)
-
-    return True
-
-
-cmd.setup()  # set up it / 安装指令
-
-
-# and more... / 更多...
-
-# set plugin metadata
-# 设置插件元信息
-ll.registerPlugin(
-    "test",
-    "test",
-    [0, 0, 1, Version.Dev],
-    {"Author": "student_2333"},
-)
-```
+**[example.py](./example.py)**
 
 ## Contact / 联系我
 
