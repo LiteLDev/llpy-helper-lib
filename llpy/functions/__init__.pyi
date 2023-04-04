@@ -1,4 +1,4 @@
-from typing import Any, Callable, overload
+from typing import Any, Callable, Literal, TypeVar, overload
 
 from .types import T_LogColorName
 
@@ -90,4 +90,25 @@ def clearInterval(task_id: int) -> bool | None:
 
     Returns:
         是否取消成功。如果返回Null，则代表取消任务失败
+    """
+
+_T_Listener = TypeVar("_T_Listener", bound=Callable[..., Literal[False] | Any])
+
+# BaseLib.py
+def listener(event: str) -> Callable[[_T_Listener], _T_Listener]:
+    """
+    监听事件函数装饰器
+
+    来源：`BaseLib.py`
+
+    用法：
+
+    ```py
+    @listener("onJoin")
+    def _(player: LLSE_Player):
+        log(f"{player.realName} joined the game!")
+    ```
+
+    Args:
+        event: 要监听的事件名称
     """

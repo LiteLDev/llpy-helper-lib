@@ -1,7 +1,9 @@
 import typing
-from typing import NoReturn
+from typing import NoReturn, TypeVar
 
 from .types import T_CommandCallback, T_ParamOption, T_ParamType
+
+_T_ArgCallback = TypeVar("_T_ArgCallback", bound=T_CommandCallback)
 
 class LLSE_Command:
     """指令对象"""
@@ -228,5 +230,21 @@ class LLSE_Command:
     def removeSoftEnumValues(self, name: str, enums: str) -> bool: ...
     def getSoftEnumValues(self, name: str) -> list[str]: ...
     def getSoftEnumNames(self) -> list[str]: ...
+
+    # BaseLib.py
+    def callback(self, func: _T_ArgCallback) -> _T_ArgCallback:
+        """
+        指令回调装饰器
+
+        来源：`BaseLib.py`
+
+        用法：
+
+        ```py
+        @cmd.callback
+        def _(_, ori: LLSE_CommandOrigin, out: LLSE_CommandOutput, result: dict[str, Any]):
+            ...
+        ```
+        """
 
 Command = LLSE_Command
