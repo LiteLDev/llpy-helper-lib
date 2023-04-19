@@ -1,5 +1,5 @@
 import typing
-from typing import NoReturn, TypeVar
+from typing import Callable, NoReturn, TypeVar
 
 from .types import T_CommandCallback, T_ParamOption, T_ParamType
 
@@ -232,7 +232,13 @@ class LLSE_Command:
     def getSoftEnumNames(self) -> list[str]: ...
 
     # BaseLib.py
-    def callback(self, func: _T_ArgCallback) -> _T_ArgCallback:
+    @typing.overload
+    def handle(
+        self,
+        func: None = None,
+    ) -> Callable[[_T_ArgCallback], _T_ArgCallback]: ...
+    @typing.overload
+    def handle(self, func: _T_ArgCallback) -> _T_ArgCallback:
         """
         指令回调装饰器
 
@@ -241,7 +247,7 @@ class LLSE_Command:
         用法：
 
         ```py
-        @cmd.callback
+        @cmd.handle
         def _(_, ori: LLSE_CommandOrigin, out: LLSE_CommandOutput, result: dict[str, Any]):
             ...
         ```

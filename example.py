@@ -26,7 +26,7 @@ mc.listen("onServerStarted", lambda: colorLog("green", "The Server Started!"))
 
 # or you can use the decorator from BaseLib (no type hints) :(
 # 也可以用 BaseLib 里的装饰器监听事件（没有类型提示）
-@listener("onJoin")
+@handle("onJoin")
 def _(player: LLSE_Player):
     logger.info(f"Player {player.realName} joined the server!")
 
@@ -44,7 +44,7 @@ cmd.overload(["input"])
 
 # set callback using decorator from BaseLib
 # 使用 BaseLib 里的装饰器设置指令回调
-@cmd.callback
+@cmd.handle
 def _(_, ori: LLSE_CommandOrigin, out: LLSE_CommandOutput, res: dict[str, Any]):
     arg: str | None = res.get("input")
     tip = f'§aYou inputed §r"§6§l{arg}§r"' if arg else "§cNothing inputted!"

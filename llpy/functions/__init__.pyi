@@ -95,7 +95,7 @@ def clearInterval(task_id: int) -> bool | None:
 _T_Listener = TypeVar("_T_Listener", bound=Callable[..., Literal[False] | Any])
 
 # BaseLib.py
-def listener(event: str) -> Callable[[_T_Listener], _T_Listener]:
+def handle(event: str) -> Callable[[_T_Listener], _T_Listener]:
     """
     监听事件函数装饰器
 
@@ -104,7 +104,7 @@ def listener(event: str) -> Callable[[_T_Listener], _T_Listener]:
     用法：
 
     ```py
-    @listener("onJoin")
+    @handle("onJoin")
     def _(player: LLSE_Player):
         log(f"{player.realName} joined the game!")
     ```
