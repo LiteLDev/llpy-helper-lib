@@ -36,6 +36,9 @@ class LLSE_Item:
     def maxDamage(self) -> int:
         """物品最大耐久"""
     @property
+    def maxStackSize(self) -> int:
+        """物品最大堆叠数量"""
+    @property
     def isArmorItem(self) -> bool:
         """物品是否为盔甲"""
     @property
