@@ -2,7 +2,7 @@
 
 [project]
 name = "llpy-helper-lib"
-version = "0.2.0"
+version = "0.2.1"
 description = "A typing & util lib for LLSE Python runtime"
 authors = [{ name = "student_2333", email = "lgc2333@126.com" }]
 dependencies = ["typing-extensions>=4.5.0"]
