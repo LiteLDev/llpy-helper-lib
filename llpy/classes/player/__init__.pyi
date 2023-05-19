@@ -17,7 +17,7 @@ from llpy import (
     NativePointer,
     NbtCompound,
 )
-from llpy.types import T_DimID, T_MoneyHistory, T_Number, T_PosType
+from llpy.types import T_DimID, T_EffectID, T_MoneyHistory, T_Number, T_PosType
 
 from .types import (
     T_BossEventColor,
@@ -1105,14 +1105,14 @@ class LLSE_Player:
         Returns:
             群系名称
         """
-    def getAllEffects(self) -> list[int] | None:
+    def getAllEffects(self) -> list[T_EffectID] | None:
         """
         获取玩家身上的状态效果
 
         Returns:
             状态效果 ID 列表。如果玩家身上没有状态效果则返回 `None`
         """
-    def addEffect(self, effect_id: int, tick: int, level: int) -> bool:
+    def addEffect(self, effect_id: T_EffectID, tick: int, level: int) -> bool:
         """
         给玩家添加状态效果
 
@@ -1124,7 +1124,7 @@ class LLSE_Player:
         Returns:
             是否成功添加效果
         """
-    def removeEffect(self, effect_id: int) -> bool:
+    def removeEffect(self, effect_id: T_EffectID) -> bool:
         """
         移除玩家的状态效果
 

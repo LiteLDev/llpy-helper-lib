@@ -994,6 +994,34 @@ class mc:
     @overload
     @staticmethod
     def listen(
+        event: Literal["onPlayerPullFishingHook"],
+        callback: Callable[
+            [LLSE_Player, LLSE_Entity, LLSE_Item | None],
+            Literal[False] | Any,
+        ],
+    ) -> bool:
+        """
+        注册监听器
+
+        玩家使用钓鱼竿钓起实体 监听
+
+        拦截事件：函数返回 `False`
+
+        Callback Args:
+            player (LLSE_Player): 使用钓鱼竿的玩家对象
+            entity (LLSE_Entity): 钓起的实体（鱼钩拉起任意实体都会触发该事件，不一定是物品实体）
+            item (LLSE_Item | None): 钓起的物品对象（如果钓到的不是物品则返回 `None`）
+
+        Args:
+            event: 要监听的事件名
+            callback: 注册的监听函数
+
+        Returns:
+            是否成功监听事件
+        """
+    @overload
+    @staticmethod
+    def listen(
         event: Literal["onMobDie"],
         callback: Callable[
             [LLSE_Entity, LLSE_Entity | None, T_DamageCause],

@@ -26,14 +26,14 @@ T_PermLevel = Literal[0, 1, 2, 3, 4]
 - 1. OP
 - 4. 控制台
 """
-T_GameMode = Literal[0, 1, 2, 3]
+T_GameMode = Literal[0, 1, 2, 6]
 """
 游戏模式
 
 - 0. 生存
 - 1. 创造
 - 2. 冒险
-- 3. 旁观
+- 6. 旁观
 """
 T_TextPacketType = Literal[0, 1, 4, 5, 9]
 """

@@ -13,7 +13,7 @@ from llpy import (
     NativePointer,
     NbtCompound,
 )
-from llpy.types import T_DamageCause, T_DimID, T_Number, T_PosType
+from llpy.types import T_DamageCause, T_DimID, T_EffectID, T_Number, T_PosType
 
 class LLSE_Entity:
     """实体对象"""
@@ -604,11 +604,47 @@ class LLSE_Entity:
         Returns:
             群系名称
         """
+    def getAllEffects(self) -> list[T_EffectID]:
+        """
+        获取实体全部药水效果
+
+        Returns:
+            实体所有的药水效果 ID
+        """
+    def addEffect(
+        self,
+        effect_id: T_EffectID,
+        tick: int,
+        level: int,
+        show_particles: bool,
+    ) -> bool:
+        """
+        为实体添加一个药水效果
+
+        Args:
+            id: 药水效果的 ID
+            tick: 持续时间
+            level: 等级
+            show_particles: 是否显示粒子
+
+        Returns:
+            操作是否成功
+        """
+    def removeEffect(self, effect_id: int) -> bool:
+        """
+        为实体移除一个药水效果
+
+        Args:
+            effect_id: 药水效果的 ID
+
+        Returns:
+            操作是否成功
+        """
     def quickEvalMolangScript(self, exp: str) -> float:
         """
         快速执行 Molang 表达式
 
-        关于Molang的详细使用方法，请参考 [MOLANG 文档 bedrock.dev](https://bedrock.dev/zh/docs/stable/Molang)
+        关于 Molang 的详细使用方法，请参考 [MOLANG 文档 bedrock.dev](https://bedrock.dev/zh/docs/stable/Molang)
 
         Args:
             exp: Molang 表达式

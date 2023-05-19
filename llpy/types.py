@@ -3,6 +3,7 @@ from .classes.base.types import T_DimID as T_DimID
 from .classes.base.types import T_DimIDNether as T_DimIDNether
 from .classes.base.types import T_DimIDOverWorld as T_DimIDOverWorld
 from .classes.base.types import T_DimIDTheEnd as T_DimIDTheEnd
+from .classes.base.types import T_EffectID as T_EffectID
 from .classes.base.types import T_Number as T_Number
 from .classes.base.types import T_PosType as T_PosType
 from .classes.command.types import T_CommandCallback as T_CommandCallback
